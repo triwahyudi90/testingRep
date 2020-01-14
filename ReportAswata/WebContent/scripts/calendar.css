@@ -1,0 +1,67 @@
+/* The containing DIV element for the Calendar */
+#dpCalendar {
+  display: none;          /* Important, do not change */
+  position: absolute;        /* Important, do not change */
+  background-color: #eeffee;
+  color: #291;
+  font-size: xx-small;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  width: 152px;
+}
+/* The table of the Calendar */
+#dpCalendar table {
+  border: 1px solid black;
+  background-color: #EEFFD0;
+  color: #291;
+  font-size: xx-small;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  width: 100%;
+}
+/* The Next/Previous buttons */
+#dpCalendar .cellButton {
+  background-color: #DDF0AF;
+  color: #291;
+}
+/* The Month/Year title cell */
+#dpCalendar .cellMonth {
+  background-color: #DDF0AF;
+  color: #291;
+  text-align: center;
+}
+/* Any regular day of the month cell */
+#dpCalendar .cellDay {
+  background-color: #DDF0AF;
+  color: #291;
+  text-align: center;
+}
+/* The day of the month cell that is selected */
+#dpCalendar .cellSelected {
+  border: 1px solid red;
+  background-color: #ffffdd;
+  color: #291;
+  text-align: center;
+}
+/* The day of the month cell that is Today */
+#dpCalendar .cellToday {
+  background-color: #F9FFEF;
+  color: #291;
+  text-align: center;
+}
+/* Any cell in a month that is unused (ie: Not a Day in that month) */
+#dpCalendar .unused {
+  background-color: transparent;
+  color: black;
+}
+/* The cancel button */
+#dpCalendar .cellCancel {
+  background-color: #DDF0AF;
+  color: #291;
+  border: 1px solid black;
+  text-align: center;
+}
+/* The clickable text inside the calendar */
+#dpCalendar a {
+  text-decoration: none;
+  background-color: transparent;
+  color: #291;
+}

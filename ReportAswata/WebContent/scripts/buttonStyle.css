@@ -1,0 +1,35 @@
+.btn{
+	background : #CCC;
+	color : #FFF;
+	display : inline-block;
+	border-radius : 4px;
+	box-shadow : inset 0 1px rgba(255,255,255,0.2);
+	font-family : Arial, sans-serif;
+	line-height : 2.5em;
+	padding : 0 3em;
+	text-decoration : none;
+}
+
+.green.btn {
+	background: linear-gradient(#6BDB55,#57B245);
+	text-shadow: 1px 1px 1px #57B245;
+}
+.red.btn {
+  background: linear-gradient(#D60A0A,#B20808);
+  text-shadow: 1px 1px 1px #B20808; 
+}
+.blue.btn {
+  background: linear-gradient(#11A1D6,#0E86B2);
+  text-shadow: 1px 1px 1px #0E86B2; 
+}
+.orange.btn {
+	background: linear-gradient(#f8ae2b,#f9b843);
+	text-shadow: 1px 1px 1px #57B245;
+}
+.small {
+  line-height: 1.5em;
+  padding: 0 1.5em; 
+}
+.btn:hover { box-shadow: inset 0 1px 1px rgba(255,255,255,0.2), inset 0 1.5em 1em rgba(255,255,255,0.3); }
+
+.btn:active { box-shadow: inset 0 1px 1px rgba(255,255,255,0.2), inset 0 1.5em 1em rgba(0,0,0,0.3); }

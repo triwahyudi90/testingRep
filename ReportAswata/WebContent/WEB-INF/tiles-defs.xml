@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions...>
+
+
+
+<tiles-definitions>
+
+    <!-- sample tiles definitions
+    <definition name=".mainLayout" path="/common/layouts/classicLayout.jsp">
+        <put name="title"  value="Sample Page Title" />
+        <put name="header" value="/common/header.jsp" />
+        <put name="menu"   value=".mainMenu" />
+        <put name="footer" value="/common/footer.jsp" />
+        <put name="body"   value=".portal.body" />
+    </definition>
+
+    <definition name=".mainMenu" path="/common/layouts/vboxLayout.jsp" >
+        <putList name="list" >
+            <add value=".menu.links" />
+            <add value=".menu.taglib.references" />
+            <add value=".menu.printer.friendly" />
+            <add value=".menu.old.documents" />
+      </putList>
+    </definition>
+
+    <definition name="aPage" extends=".mainLayout">
+        <put name="title"  value="Another Title" />
+        <put name="body"   value=".aPage.body" />
+    </definition>
+
+    end samples -->
+
+    <definition name="${YOUR_DEFINITION_HERE}">
+    </definition>
+
+    <definition name=".main" path="/WEB-INF/layout/mainLayout.jsp">
+        <put name="title"  value="ReportAswata" />
+        <put name="header" value="/WEB-INF/layout/header.jsp" />
+        <put name="menu"   value="/WEB-INF/layout/menu2.jsp" />
+        <put name="footer" value="/WEB-INF/layout/footer.jsp" />
+        <put name="body"   value="" >
+        </put>
+    </definition>
+
+	<definition name=".login" path="/login.jsp"></definition>
+    <definition name=".errPage" path="/errPage.jsp"></definition>
+    <definition name=".logout" path="/logOut.jsp"></definition>
+    
+    <action path="/LoginSwitch" scope="session"
+			type="com.aswata.forward.LoginSwitch">
+            <forward name="success" path=".login" />
+    </action>
+        
+    <definition name=".messagePage" extends=".main">
+        <put name="body"   value="/WEB-INF/pages/messagePage.jsp" />
+    </definition>   
+    
+    <definition name=".dashboard" path="/WEB-INF/pages/dashboard.jsp"></definition> 
+    <!-- dashboard -->	
+		<!-- premi -->
+    		<definition name=".premi" path="/WEB-INF/pages/dashboard/premi.jsp"></definition> 
+    	<!-- risk -->
+    		<definition name=".riskProfile" path="/WEB-INF/pages/dashboard/riskProfile.jsp"></definition> 
+    
+    <!-- CLAIM -->
+    	<!-- CS -->
+			<!-- DJARUM -->
+				<definition name=".djarumCs" path="/WEB-INF/pages/Claim/Cs/djarum/djarumCs.jsp"></definition>
+		<!-- LKS -->
+			<!-- DJARUM -->
+				<definition name=".djarumLks" path="/WEB-INF/pages/Claim/Lks/djarum/djarumLks.jsp"></definition>
+		<!-- AGENT & RETAIL -->
+			<!-- CLAIM -->
+				<definition name=".Claim" path="/WEB-INF/pages/Claim/AgentRetail/claim/Claim.jsp"></definition>
+			<!-- PRODUKSI -->
+				<definition name=".prodClaim" path="/WEB-INF/pages/Claim/AgentRetail/produksi/prodClaim.jsp"></definition>
+    		
+    <!-- marketing -->
+		<!-- BANK -->
+			<!-- ALL -->
+				<definition name=".allbankCutOff" path="/WEB-INF/pages/Marketing/Bank/Allbank/CutOff.jsp"></definition>
+				<definition name=".allbankRewards" path="/WEB-INF/pages/Marketing/Bank/Allbank/Rewards.jsp"></definition>
+			<!-- BCA -->
+				<definition name=".bca" path="/WEB-INF/pages/Marketing/Bank/Bca/bca.jsp"></definition>
+			<!-- BRI -->
+				<definition name=".bri" path="/WEB-INF/pages/Marketing/Bank/Bri/bri.jsp"></definition>
+			<!-- BNI -->
+				<definition name=".bni" path="/WEB-INF/pages/Marketing/Bank/Bni/bni.jsp"></definition>
+				<definition name=".bniVa" path="/WEB-INF/pages/Marketing/Bank/Bni/bniVa.jsp"></definition>
+			<!-- CIMB -->
+				<definition name=".cimb" path="/WEB-INF/pages/Marketing/Bank/Cimb/cimb.jsp"></definition>
+				<definition name=".EomCimb" path="/WEB-INF/pages/Marketing/Bank/Cimb/EomCimb.jsp"></definition>
+			<!-- MANDIRI -->
+				<definition name=".mandiri" path="/WEB-INF/pages/Marketing/Bank/Mandiri/mandiri.jsp"></definition>
+			<!-- MAYBANK -->	
+				<definition name=".maybank" path="/WEB-INF/pages/Marketing/Bank/Maybank/maybank.jsp"></definition>
+			<!-- PERMATA -->	
+				<definition name=".permata" path="/WEB-INF/pages/Marketing/Bank/Permata/permata.jsp"></definition>
+			<!-- UOB -->	
+				<definition name=".uob" path="/WEB-INF/pages/Marketing/Bank/Uob/uob.jsp"></definition>
+		<!-- TENDER -->
+			<!-- TENDER -->
+				<definition name=".tender" path="/WEB-INF/pages/Marketing/Tender/Tender/tender.jsp"></definition>
+					
+		<!-- REPORT -->
+			<!-- BANK -->
+				<definition name=".rptBank" path="/WEB-INF/pages/Marketing/Report/bank/rptBank.jsp"></definition>
+</tiles-definitions>

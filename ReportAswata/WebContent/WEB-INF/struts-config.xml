@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+
+<struts-config>
+	<form-beans>
+	</form-beans>
+
+	<global-exceptions>
+	</global-exceptions>
+
+	<global-forwards>
+		<forward name="welcome" path="/login.do" />
+		<forward name="loginpage" path="/LoginSwitch.do" />
+		<forward name="msgpage" path=".messagePage" />
+	</global-forwards>
+
+	<action-mappings>
+		<action path="/dashboard" type="com.aswata.action.LoginProcess">
+			<forward name="success" path=".dashboard" />
+			<forward name="failed" path=".login" />
+		</action>
+		<action path="/LoginSwitch" scope="session"
+			type="com.aswata.forward.LoginSwitch">
+			<forward name="success" path=".login" />
+		</action>
+		<action path="/LogoutProcess" type="com.aswata.action.LogoutProcess">
+			<forward name="success" path=".login" />
+		</action>
+		
+		<action path="/login" forward=".login" />
+	<!-- dashboard -->	
+		<!-- premi -->
+			<action path="/premi" parameter="usr" scope="request" type="com.aswata.report.forward.premiFwd">
+				<forward name="success" path=".premi" />
+				<forward name="failed" path=".errPage"></forward>
+			</action>
+			<action path="/premiAct" parameter="usr" scope="request" type="com.aswata.report.action.premiAct">
+				<forward name="success" path=".premi" />
+				<forward name="failed" path=".errPage"></forward>
+			</action>
+			
+		<!-- Risk -->
+			<action path="/riskProfile" parameter="usr" scope="request" type="com.aswata.report.forward.riskFwd">
+				<forward name="success" path=".riskProfile" />
+				<forward name="failed" path=".errPage"></forward>
+			</action>
+			<action path="/riskProfileAct" parameter="usr" scope="request" type="com.aswata.report.action.riskProfileAct">
+				<forward name="success" path=".riskProfile" />
+				<forward name="failed" path=".errPage"></forward>
+			</action>
+	
+	<!-- CLAIM -->
+		<!-- CS -->
+			<!-- DJARUM -->
+			<action path="/djarumCs" parameter="usr" scope="request" type="com.aswata.report.forward.djarumCsFwd">
+					<forward name="success" path=".djarumCs" />
+					<forward name="failed" path=".errPage"></forward>
+			</action>
+			<action path="/djarumCsAct" parameter="usr" scope="request" type="com.aswata.report.action.djarumCsAct">
+				<forward name="success" path=".djarumCs" />
+				<forward name="failed" path=".errPage"></forward>
+			</action>
+		<!-- LKS -->
+			<!-- DJARUM -->
+			<action path="/djarumLks" parameter="usr" scope="request" type="com.aswata.report.forward.djarumLksFwd">
+					<forward name="success" path=".djarumLks" />
+					<forward name="failed" path=".errPage"></forward>
+			</action>
+			<action path="/djarumLksAct" parameter="usr" scope="request" type="com.aswata.report.action.djarumLksAct">
+				<forward name="success" path=".djarumLks" />
+				<forward name="failed" path=".errPage"></forward>
+			</action>
+		<!-- AGENT & RETAIL -->
+			<!-- CLAIM -->
+			<action path="/Claim" parameter="usr" scope="request" type="com.aswata.report.forward.Claim">
+					<forward name="success" path=".Claim" />
+					<forward name="failed" path=".errPage"></forward>
+			</action>
+			<action path="/ClaimAct" parameter="usr" scope="request" type="com.aswata.report.action.ClaimAct">
+				<forward name="success" path=".Claim" />
+				<forward name="failed" path=".errPage"></forward>
+			</action>
+			<!-- PRODUKSI -->
+			<action path="/prodClaim" parameter="usr" scope="request" type="com.aswata.report.forward.prodClaim">
+					<forward name="success" path=".prodClaim" />
+					<forward name="failed" path=".errPage"></forward>
+			</action>
+			<action path="/prodClaimAct" parameter="usr" scope="request" type="com.aswata.report.action.prodClaimAct">
+				<forward name="success" path=".prodClaim" />
+				<forward name="failed" path=".errPage"></forward>
+			</action>
+		
+	<!-- marketing -->
+		<!-- BANK -->
+			<!-- ALL CUT OFF-->
+				<action path="/allbankCutOff" parameter="usr" scope="request" type="com.aswata.report.forward.allbankCutOffFwd">
+					<forward name="success" path=".allbankCutOff" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/allbankCutOffAct" parameter="usr" scope="request" type="com.aswata.report.action.allbankCutOffAct">
+					<forward name="success" path=".allbankCutOff" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>	
+			<!-- ALL CUT REWARDS-->
+				<action path="/allbankRewards" parameter="usr" scope="request" type="com.aswata.report.forward.allbankRewardsFwd">
+					<forward name="success" path=".allbankRewards" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/allbankRewardsAct" parameter="usr" scope="request" type="com.aswata.report.action.allbankRewardsAct">
+					<forward name="success" path=".allbankRewards" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+			<!-- BCA -->
+				<action path="/bca" parameter="usr" scope="request" type="com.aswata.report.forward.bcaFwd">
+					<forward name="success" path=".bca" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/bcaAct" parameter="usr" scope="request" type="com.aswata.report.action.bcaAct">
+					<forward name="success" path=".bca" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>	
+			<!-- BRI -->
+				<action path="/bri" parameter="usr" scope="request" type="com.aswata.report.forward.briFwd">
+					<forward name="success" path=".bri" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/briAct" parameter="usr" scope="request" type="com.aswata.report.action.briAct">
+					<forward name="success" path=".bri" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>	
+			<!-- BNI -->
+				<action path="/bni" parameter="usr" scope="request" type="com.aswata.report.forward.bniFwd">
+					<forward name="success" path=".bni" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/bniAct" parameter="usr" scope="request" type="com.aswata.report.action.bniAct">
+					<forward name="success" path=".bni" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>	
+			<!-- BNI VA-->
+				<action path="/bniVa" parameter="usr" scope="request" type="com.aswata.report.forward.bniVaFwd">
+					<forward name="success" path=".bniVa" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/bniVaAct" parameter="usr" scope="request" type="com.aswata.report.action.bniVaAct">
+					<forward name="success" path=".bniVa" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>	
+			<!-- MANDIRI -->
+				<action path="/mandiri" parameter="usr" scope="request" type="com.aswata.report.forward.mandiriFwd">
+					<forward name="success" path=".mandiri" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/mandiriAct" parameter="usr" scope="request" type="com.aswata.report.action.mandiriAct">
+					<forward name="success" path=".mandiri" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>	
+			<!-- CIMB -->
+				<action path="/cimb" parameter="usr" scope="request" type="com.aswata.report.forward.cimbFwd">
+					<forward name="success" path=".cimb" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/cimbNiagaAct" parameter="usr" scope="request" type="com.aswata.report.action.cimbAct">
+					<forward name="success" path=".cimb" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				
+				<action path="/EomCimb" parameter="usr" scope="request" type="com.aswata.report.forward.viewRepCimb">
+					<forward name="success" path=".EomCimb" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/EomCimbAct" parameter="usr" scope="request" type="com.aswata.report.action.EomCimbAct">
+					<forward name="success" path=".EomCimb" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				
+				<action path="/viewRepCimbAct" parameter="usr" scope="request" type="com.aswata.report.action.viewRepCimbAct">
+					<forward name="success" path=".EomCimb" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/downloadRptCimb" parameter="usr" scope="request" type="com.aswata.report.action.downloadRptCimb">
+					<forward name="success" path=".EomCimb" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+			
+			<!-- MAYBANK -->
+				<action path="/maybank" parameter="usr" scope="request" type="com.aswata.report.forward.maybankFwd">
+					<forward name="success" path=".maybank" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/maybankAct" parameter="usr" scope="request" type="com.aswata.report.action.maybankAct">
+					<forward name="success" path=".maybank" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>	
+			<!-- PERMATA -->
+				<action path="/permata" parameter="usr" scope="request" type="com.aswata.report.forward.permataFwd">
+					<forward name="success" path=".permata" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/permataAct" parameter="usr" scope="request" type="com.aswata.report.action.permataAct">
+					<forward name="success" path=".permata" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+			<!-- UOB -->
+				<action path="/uob" parameter="usr" scope="request" type="com.aswata.report.forward.uobFwd">
+					<forward name="success" path=".uob" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/uobAct" parameter="usr" scope="request" type="com.aswata.report.action.uobAct">
+					<forward name="success" path=".uob" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+		
+		<!-- TENDER -->
+			<!-- TENDER -->	
+				<action path="/tender" parameter="usr" scope="request" type="com.aswata.report.forward.tenderFwd">
+						<forward name="success" path=".tender" />
+						<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/tenderAct" parameter="usr" scope="request" type="com.aswata.report.action.tenderAct">
+					<forward name="success" path=".tender" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+			
+		<!-- REPORT -->	
+			<!-- BANK -->
+				<action path="/rptBank" parameter="usr" scope="request" type="com.aswata.report.forward.rptBank">
+						<forward name="success" path=".rptBank" />
+						<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/rptBankAct" parameter="usr" scope="request" type="com.aswata.report.action.rptBankAct">
+					<forward name="success" path=".rptBank" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				
+	<!-- Selesai -->
+		
+		
+	</action-mappings>
+
+
+	<controller processorClass="org.apache.struts.tiles.TilesRequestProcessor" />
+
+	<message-resources parameter="com/myapp/struts/ApplicationResource" />
+
+	<!-- ========================= Tiles plugin =============================== -->
+	<!-- This plugin initialize Tiles definition factory. This later can takes 
+		some parameters explained here after. The plugin first read parameters from 
+		web.xml, thenoverload them with parameters defined here. All parameters are 
+		optional. The plugin should be declared in each struts-config file. - definitions-config: 
+		(optional) Specify configuration file names. There can be several comma separated 
+		file names (default: ?? ) - moduleAware: (optional - struts1.1) Specify if 
+		the Tiles definition factory is module aware. If true (default), there will 
+		be one factory for each Struts module. If false, there will be one common 
+		factory for all module. In this later case, it is still needed to declare 
+		one plugin per module. The factory will be initialized with parameters found 
+		in the first initialized plugin (generally the one associated with the default 
+		module). true : One factory per module. (default) false : one single shared 
+		factory for all modules - definitions-parser-validate: (optional) Specify 
+		if xml parser should validate the Tiles configuration file. true : validate. 
+		DTD should be specified in file header (default) false : no validation Paths 
+		found in Tiles definitions are relative to the main context. -->
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+		<set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+		<set-property property="moduleAware" value="true" />
+	</plug-in>
+
+	<!-- ========================= Validator plugin ================================= -->
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml" />
+	</plug-in>
+
+</struts-config>
