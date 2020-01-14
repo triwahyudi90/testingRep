@@ -36,15 +36,8 @@ public class bni {
 	private BigDecimal comm;
 	private BigDecimal os;
 	private String status;
-	private String statusOs;
 	
-	
-	public String getStatusOs() {
-		return statusOs;
-	}
-	public void setStatusOs(String statusOs) {
-		this.statusOs = statusOs;
-	}
+
 	/**
 	 * @return the policyNo
 	 */
