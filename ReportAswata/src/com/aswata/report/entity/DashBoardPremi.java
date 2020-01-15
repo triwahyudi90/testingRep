@@ -23,6 +23,35 @@ public class DashBoardPremi {
 	private BigDecimal comm;
 	private BigDecimal jasa;
 	private BigDecimal ppn;
+	private String segment;
+	private String businessCode;
+	private String businessType;
+	private String reqType;
+	
+	public String getSegment() {
+		return segment;
+	}
+	public void setSegment(String segment) {
+		this.segment = segment;
+	}
+	public String getBusinessCode() {
+		return businessCode;
+	}
+	public void setBusinessCode(String businessCode) {
+		this.businessCode = businessCode;
+	}
+	public String getBusinessType() {
+		return businessType;
+	}
+	public void setBusinessType(String businessType) {
+		this.businessType = businessType;
+	}
+	public String getReqType() {
+		return reqType;
+	}
+	public void setReqType(String reqType) {
+		this.reqType = reqType;
+	}
 	/**
 	 * @return the policyNumber
 	 */
