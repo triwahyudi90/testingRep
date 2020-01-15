@@ -426,7 +426,7 @@ public class sqlFunction {
 		String sql = "";
 		
 		try {
-			conn = DatasourceEntry.getInstance().getPostgreDS().getConnection();
+			conn = DatasourceEntry.getInstance().getPostgreDWHDS().getConnection();
 			sql = "SELECT * FROM DS_POLICY_NOTE "
 					+ " WHERE BRANCH_ID = ? AND TRANSACTION_DATE BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY')";
 			System.out.println("SQL getPolisPremi -->" + sql);
@@ -443,8 +443,12 @@ public class sqlFunction {
 				premi.setBranchName(rs.getString("BRANCH_NAME"));
 				premi.setTransactionDate(rs.getString("TRANSACTION_DATE"));
 				premi.setPremi(rs.getBigDecimal("PREMI"));
+				premi.setPrmAdjust(rs.getBigDecimal("PRM_ADJUST"));
 				premi.setStmp(rs.getBigDecimal("STMP"));
 				premi.setcPol(rs.getBigDecimal("C_POL"));
+				premi.setComm(rs.getBigDecimal("COMM"));
+				premi.setJasa(rs.getBigDecimal("JASA"));
+				premi.setPpn(rs.getBigDecimal("PPN"));
 				lbb.add(premi);
 			}
 		} catch (Exception e) {
