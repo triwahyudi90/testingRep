@@ -346,7 +346,8 @@ public class sqlFunction {
 		try {
 			conn = DatasourceEntry.getInstance().getPostgreDWHDS().getConnection();
 			sql = "SELECT (SUM(PREMI+PRM_ADJUST)/1000000) AS PREMI FROM DS_POLICY_NOTE"
-					+ " WHERE TO_CHAR(TRANSACTION_DATE,'YYYY') = TO_CHAR(NOW(),'YYYY')";
+					+ " WHERE TO_CHAR(TRANSACTION_DATE,'YYYY') = TO_CHAR(NOW(),'YYYY')"
+					+ " AND BRANCH_ID NOT IN ('0','87','97')";
 			System.out.println("SQL getDashoardPremi -->" + sql);
 			
 			stat = conn.prepareStatement(sql);
