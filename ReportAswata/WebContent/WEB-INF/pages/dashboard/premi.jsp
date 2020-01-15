@@ -237,8 +237,12 @@
 							  <th>BRANCH NAME</th>
 							  <th>TRANSACTION DATE</th>
 							  <th>PREMI</th>
-							  <th>ADM</th>
+							  <th>PREMI ADJUST</th>
 							  <th>STMP</th>
+							  <th>ADM</th>
+							  <th>COMM</th>
+							  <th>JASA</th>
+							  <th>PPN</th>
 						  </tr>
 					  </thead>
 					  <tbody>
@@ -252,8 +256,12 @@
 									<td>${lph.branchName}</td>
 									<td>${lph.transactionDate}</td>
 									<td>${lph.premi}</td>
-									<td>${lph.cPol}</td>
+									<td>${lph.prmAdjust}</td>
 									<td>${lph.stmp}</td>
+									<td>${lph.cPol}</td>
+									<td>${lph.comm}</td>
+									<td>${lph.jasa}</td>
+									<td>${lph.ppn}</td>
 						  		</tr>
 						  </c:forEach>
 					  </tbody>
