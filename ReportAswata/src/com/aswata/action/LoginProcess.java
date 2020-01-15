@@ -63,16 +63,16 @@ public class LoginProcess extends Action{
     		DecimalFormat df1 = new DecimalFormat("#");
     		String totalPremi = df.format(tempPremi);
     		String totalTarget = df.format(target);
-    		String totalRasio = df1.format(rasio);
+//    		String totalRasio = df1.format(rasio);
     		System.out.println("totalPremi:" + totalPremi);
     		System.out.println("totalTarget:" + totalTarget);
-    		System.out.println("totalRasio:" + totalRasio);
+//    		System.out.println("totalRasio:" + totalRasio);
     		
     		request.getSession(true).setAttribute(StaticParameter.MENU_STATUS, role);
             request.getSession(true).setAttribute(StaticParameter.SESSION_USER, username.toUpperCase());
             request.getSession(true).setAttribute("TotPremi", totalPremi);
             request.getSession(true).setAttribute("TotTarget", totalTarget);
-            request.getSession(true).setAttribute("TotRasio", totalRasio);
+//            request.getSession(true).setAttribute("TotRasio", totalRasio);
             request.getSession(true).setAttribute("user", username);
             request.getSession(true).setAttribute("password", password);
             request.getSession(true).setAttribute("role", role);
