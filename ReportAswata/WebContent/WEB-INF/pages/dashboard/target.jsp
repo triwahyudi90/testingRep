@@ -6,21 +6,26 @@
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Dashboard</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="scripts/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <link rel="stylesheet" href="dist/css/AdminLTE.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-  <link rel="stylesheet" href="dist/css/component/bootstrap-datepicker/bootstrap-datepicker.min.css">
-  <link rel="stylesheet" href="plugins/timepicker/bootstrap-timepicker.min.css">
-  <link rel="stylesheet" href="plugins/select2/select2.min.css"> 
-  <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/fixedColumn.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">  
   
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Arrays" %>
@@ -93,8 +98,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="menu2.jsp"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="/Mars/dashboard.do"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+            <li><a href="premi.do"><i class="fa fa-circle-o"></i> PREMI</a></li>
+            <li><a href="target.do"><i class="fa fa-circle-o"></i> TARGET</a></li>
           </ul>
         </li>
         
@@ -155,12 +160,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Premi
+        Data Target
         <small>Preview</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Data Premi</li>
+        <li class="active">Data Target</li>
       </ol>
     </section>
 
@@ -168,59 +173,7 @@
     <section class="content">
     	<div class="box">
     		<div class="box-header with-border">
-	        	<h3 class="box-title">Data Premi</h3>
-	        	<div class="box-tools pull-right">
-	            	<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-	              	<i class="fa fa-minus"></i></button>
-	          	</div>
-	        </div>
-	        <div class="box-body">
-	        	<form action="premiAct.do" method="POST" name="jurnal">
-		    		<div class="col-xs-2">
-			    		<label>Branch Name</label>
-		    		</div>
-		    		<div class="col-xs-3">
-		    			<select name = "tes" class="form-control select2" style="width: 100%;">
-		    				<c:forEach var="branch" items="${branch}" >
-		    					<option selected="selected" value ="${branch.branchId}">${branch.branchName}</option>
-		    				</c:forEach>
-		                </select>
-		    		</div>
-		        	<br><br>
-		        	<div class="col-xs-2">
-			    		<label>Start Date</label>
-		    		</div>
-		    		<div class="col-xs-3">
-		    			<div class="input-group date">
-		                  <div class="input-group-addon">
-		                    <i class="fa fa-calendar"></i>
-		                  </div>
-		                  <input name="dt1" type="text" class="form-control pull-right" id="datepicker">
-		                </div>
-		    		</div>
-		    		<br><br>
-		    		<div class="col-xs-2">
-			    		<label>End Date</label>
-		    		</div>
-		    		<div class="col-xs-3">
-		    			<div class="input-group date">
-		                  <div class="input-group-addon">
-		                    <i class="fa fa-calendar"></i>
-		                  </div>
-		                  <input name="dt2" type="text" class="form-control pull-right" id="datepicker1">
-		                </div>
-		    		</div>
-		    		<br><br>
-					<div class="col-xs-5">
-						<button class="btn btn-default" type="button" data-dismiss="modal" onclick="document.forms['jurnal'].submit(); return valdata();">Search</button>
-		        	</div>
-	        	</form>
-	        </div>
-    	</div> 
-    		
-    	<div class="box">
-    		<div class="box-header with-border">
-	          <h3 class="box-title">Data Premi</h3>
+	          <h3 class="box-title">Data Target</h3>
 	          	<div class="box-tools pull-right">
 	           		<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
 	             		<i class="fa fa-minus"></i>
@@ -228,32 +181,58 @@
 	         	</div>
 	        </div>
 	        <div class="box-body">
-	        	<table id="dtHorizontalVerticalExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+	        	<table id="example2" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
 					  <thead>
 						  <tr>
 							  <th>NO</th>
-							  <th>POLICY NUMBER</th>
-							  <th>DOCUMENT NUMBER</th>
+							  <th>TARGET YEAR</th>
+							  <th>REGIONAL NAME</th>
 							  <th>BRANCH NAME</th>
-							  <th>TRANSACTION DATE</th>
-							  <th>PREMI</th>
-							  <th>ADM</th>
-							  <th>STMP</th>
+							  <th>SEGMENT</th>
+							  <th>REQ TYPE</th>
+							  <th>SECTOR</th>
+							  <th>SALES NAME</th>
+							  <th>COB</th>
+							  <th>JAN</th>
+							  <th>FEB</th>
+							  <th>MAR</th>
+							  <th>APR</th>
+							  <th>MAY</th>
+							  <th>JUN</th>
+							  <th>JUL</th>
+							  <th>AUG</th>
+							  <th>SEPT</th>
+							  <th>OCT</th>
+							  <th>NOV</th>
+							  <th>DEC</th>
 						  </tr>
 					  </thead>
 					  <tbody>
 					  	  <c:set var="inc" value="0" />
-						  <c:forEach var="lph" items="${lph}" >
+						  <c:forEach var="temp" items="${temp}" >
 						  		<tr>
 						  			<c:set var="inc" value="${inc + 1}" />
 									<td>${inc}</td>
-									<td>${lph.policyNumber}</td>
-									<td>${lph.documentNo}</td>
-									<td>${lph.branchName}</td>
-									<td>${lph.transactionDate}</td>
-									<td>${lph.premi}</td>
-									<td>${lph.cPol}</td>
-									<td>${lph.stmp}</td>
+									<td>${temp.targetYear}</td>
+									<td>${temp.regionalName}</td>
+									<td>${temp.branchName}</td>
+									<td>${temp.segment}</td>
+									<td>${temp.reqType}</td>
+									<td>${temp.sector}</td>
+									<td>${temp.salesName}</td>
+									<td>${temp.cob}</td>
+									<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${temp.jan}" /></td>
+									<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${temp.feb}" /></td>
+									<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${temp.mar}" /></td>
+									<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${temp.apr}" /></td>
+									<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${temp.may}" /></td>
+									<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${temp.jun}" /></td>
+									<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${temp.jul}" /></td>
+									<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${temp.aug}" /></td>
+									<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${temp.sept}" /></td>
+									<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${temp.oct}" /></td>
+									<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${temp.nov}" /></td>
+									<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${temp.dec}" /></td>
 						  		</tr>
 						  </c:forEach>
 					  </tbody>
@@ -286,44 +265,41 @@
   
   <div class="control-sidebar-bg"></div>
 
-<script src="scripts/bootstrap/js/bootstrap.min.js"></script>
-<script src="plugins/input-mask/jquery.inputmask.js"></script>
-<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
-<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
-<script src="plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
-<script src="plugins/timepicker/bootstrap-timepicker.min.js"></script>
-<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<script src="plugins/iCheck/icheck.min.js"></script>
-<script src="plugins/fastclick/fastclick.js"></script>
-<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
-<script src="js/dataTable.js"></script>
-<script src="dist/js/app.min.js"></script>
-<script src="dist/js/component/bootstrap-datepicker.min.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- date-range-picker -->
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
 <script src="dist/js/demo.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+
+
 <script>
-	$(document).ready(function () {
-		$('#dtHorizontalVerticalExample').DataTable({
-		"scrollX": true
-		});
-		$('.dataTables_length').addClass('bs-select');
-		});
-	
-	$(function () {
-	    //Date picker
-	    $('#datepicker').datepicker({
-	      format: 'dd/mm/yyyy',
-	      autoclose: true
-	    })
-	    
-	    $('#datepicker1').datepicker({
-	      format: 'dd/mm/yyyy',
-	      autoclose: true
-	    })
-	  })
+  $(document).ready(function(){
+	var table = $('#example2').DataTable({
+        scrollX:        true,
+        scrollCollapse: true,
+		paging		: true,
+		searching	: true,
+		info	: true
+	});
+	new $.fn.dataTable.FixedColumns( table );
+	});
+  
+  
+  $(function(){
+	  $('#datepicker').datepicker({
+	      autoclose: true,
+	      format: "dd/mm/yyyy"
+	    });
+	  $('#datepicker1').datepicker({
+	      autoclose: true,
+	      format: "dd/mm/yyyy"
+	    });
+  })
 </script>
 </body>
 </html>

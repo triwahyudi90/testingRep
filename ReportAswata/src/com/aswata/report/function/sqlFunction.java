@@ -29,6 +29,7 @@ import com.aswata.report.entity.RptOpt;
 import com.aswata.report.entity.cimbNiaga;
 import com.aswata.report.entity.loginReport;
 import com.aswata.report.entity.loginReport2;
+import com.aswata.report.entity.target;
 import com.aswata.singleton.DatasourceEntry;
 
 /**
@@ -427,21 +428,41 @@ public class sqlFunction {
 		
 		try {
 			conn = DatasourceEntry.getInstance().getPostgreDWHDS().getConnection();
-			sql = "SELECT * FROM DS_POLICY_NOTE "
-					+ " WHERE BRANCH_ID = ? AND TRANSACTION_DATE BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY')";
+			sql = "SELECT A.POLICY_SLIP_NUMBER, A.DOCUMENT_NUMBER, A.BRANCH_NAME, B.SEGMENT, B.BUSINESS_CODE, A.TRANSACTION_DATE,"
+					+ " B.BUSINESS_TYPE, B.REQUESTOR_TYPE, A.PREMI, A.PRM_ADJUST, A.STMP, A.COMM, A.C_POL, A.JASA, A.PPN"
+					+ " FROM DS_POLICY_NOTE A LEFT JOIN DS_POLICY_DETAIL B ON A.POLICY_SLIP_NUMBER = B.POLICY_NUMBER"
+					+ " AND A.BRANCH_ID = B.BRANCH_ID WHERE";
+					
+			if ("101".equals(branch)){
+				sql += " A.TRANSACTION_DATE BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY')";
+			} else {
+				sql += " A.BRANCH_ID = ? AND A.TRANSACTION_DATE BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY')";
+			}
+
+			sql += " ORDER BY TRANSACTION_DATE";
 			System.out.println("SQL getPolisPremi -->" + sql);
 			int i = 1;
 			stat = conn.prepareStatement(sql);
-			stat.setString(i++, branch.trim());
-			stat.setString(i++, dt1.trim());
-			stat.setString(i++, dt2.trim());
+			
+			if ("101".equals(branch)){
+				stat.setString(i++, dt1.trim());
+				stat.setString(i++, dt2.trim());
+			} else {
+				stat.setString(i++, branch.trim());
+				stat.setString(i++, dt1.trim());
+				stat.setString(i++, dt2.trim());
+			}
 			rs = stat.executeQuery();
 			while (rs.next()) {
 				premi = new DashBoardPremi();
-				premi.setPolicyNumber(rs.getString("POLICY_NUMBER"));
+				premi.setPolicyNumber(rs.getString("POLICY_SLIP_NUMBER"));
 				premi.setDocumentNo(rs.getString("DOCUMENT_NUMBER"));
 				premi.setBranchName(rs.getString("BRANCH_NAME"));
 				premi.setTransactionDate(rs.getString("TRANSACTION_DATE"));
+				premi.setSegment(rs.getString("SEGMENT"));
+				premi.setBusinessCode(rs.getString("BUSINESS_CODE"));
+				premi.setBusinessType(rs.getString("BUSINESS_TYPE"));
+				premi.setReqType(rs.getString("REQUESTOR_TYPE"));
 				premi.setPremi(rs.getBigDecimal("PREMI"));
 				premi.setPrmAdjust(rs.getBigDecimal("PRM_ADJUST"));
 				premi.setStmp(rs.getBigDecimal("STMP"));
@@ -450,6 +471,53 @@ public class sqlFunction {
 				premi.setJasa(rs.getBigDecimal("JASA"));
 				premi.setPpn(rs.getBigDecimal("PPN"));
 				lbb.add(premi);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnDB(conn, stat, rs);
+		} return lbb;
+	}
+	
+	public List getTarget (){
+		List lbb = new ArrayList();
+		target temPtarget = null;
+		Connection conn = null;
+		PreparedStatement stat = null;
+		ResultSet rs = null;
+		String sql = "";
+		
+		try {
+			conn = DatasourceEntry.getInstance().getPostgreDWHDS().getConnection();
+			sql = "SELECT * FROM TARGET ORDER BY COB";
+			
+			System.out.println("sqlTarget:" + sql);
+			int i = 1;
+			stat = conn.prepareStatement(sql);
+			rs = stat.executeQuery();
+			while (rs.next()) {
+				temPtarget = new target();
+				temPtarget.setTargetYear(rs.getString("TARGET_YEAR"));
+				temPtarget.setRegionalName(rs.getString("REGIONAL_NAME"));
+				temPtarget.setBranchName(rs.getString("BRANCH_NAME"));
+				temPtarget.setSegment(rs.getString("SEGMENT"));
+				temPtarget.setReqType(rs.getString("REQUESTOR_TYPE"));
+				temPtarget.setSector(rs.getString("SECTOR"));
+				temPtarget.setSalesName(rs.getString("SALES_NAME"));
+				temPtarget.setCob(rs.getString("COB"));
+				temPtarget.setJan(rs.getBigDecimal("JAN"));
+				temPtarget.setFeb(rs.getBigDecimal("FEB"));
+				temPtarget.setMar(rs.getBigDecimal("MAR"));
+				temPtarget.setApr(rs.getBigDecimal("APR"));
+				temPtarget.setMay(rs.getBigDecimal("MAY"));
+				temPtarget.setJun(rs.getBigDecimal("JUN"));
+				temPtarget.setJul(rs.getBigDecimal("JUL"));
+				temPtarget.setAug(rs.getBigDecimal("AUG"));
+				temPtarget.setSept(rs.getBigDecimal("SEP"));
+				temPtarget.setOct(rs.getBigDecimal("OCT"));
+				temPtarget.setNov(rs.getBigDecimal("NOV"));
+				temPtarget.setDec(rs.getBigDecimal("DEC"));
+				lbb.add(temPtarget);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
