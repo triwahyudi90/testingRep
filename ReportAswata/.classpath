@@ -13,14 +13,14 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/New folder/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/avalon-framework-4.1.4.jar"/>
-	<classpathentry kind="lib" path="C:/New folder/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/dom4j.jar"/>
-	<classpathentry kind="lib" path="C:/New folder/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/jpos.jar"/>
-	<classpathentry kind="lib" path="C:/New folder/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/jstl.jar"/>
-	<classpathentry kind="lib" path="C:/New folder/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/log4j-boot.jar"/>
-	<classpathentry kind="lib" path="C:/New folder/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/ojdbc6.jar"/>
-	<classpathentry kind="lib" path="C:/New folder/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/postgresql-9.4.1212.jar"/>
-	<classpathentry kind="lib" path="C:/New folder/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/postgresql-42.2.6.jre7.jar"/>
-	<classpathentry kind="lib" path="C:/New folder/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/xmlbeans.jar"/>
+	<classpathentry kind="lib" path="D:/NEW PROJECT/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/avalon-framework-4.1.4.jar"/>
+	<classpathentry kind="lib" path="D:/NEW PROJECT/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/dom4j.jar"/>
+	<classpathentry kind="lib" path="D:/NEW PROJECT/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/jpos.jar"/>
+	<classpathentry kind="lib" path="D:/NEW PROJECT/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/jstl.jar"/>
+	<classpathentry kind="lib" path="D:/NEW PROJECT/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/log4j-boot.jar"/>
+	<classpathentry kind="lib" path="D:/NEW PROJECT/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="D:/NEW PROJECT/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/postgresql-9.4.1212.jar"/>
+	<classpathentry kind="lib" path="D:/NEW PROJECT/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/postgresql-42.2.6.jre7.jar"/>
+	<classpathentry kind="lib" path="D:/NEW PROJECT/jboss-5.1.0.GA/jboss-5.1.0.GA/lib/xmlbeans.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

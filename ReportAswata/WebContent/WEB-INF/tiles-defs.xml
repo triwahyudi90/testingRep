@@ -59,6 +59,8 @@
     <!-- dashboard -->	
 		<!-- premi -->
     		<definition name=".premi" path="/WEB-INF/pages/dashboard/premi.jsp"></definition> 
+    	<!-- target -->
+    		<definition name=".target" path="/WEB-INF/pages/dashboard/target.jsp"></definition> 
     	<!-- risk -->
     		<definition name=".riskProfile" path="/WEB-INF/pages/dashboard/riskProfile.jsp"></definition> 
     

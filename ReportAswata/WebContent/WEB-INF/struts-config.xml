@@ -43,6 +43,16 @@
 				<forward name="failed" path=".errPage"></forward>
 			</action>
 			
+			<!-- target -->
+			<action path="/target" parameter="usr" scope="request" type="com.aswata.report.forward.targetFwd">
+				<forward name="success" path=".target" />
+				<forward name="failed" path=".errPage"></forward>
+			</action>
+			<action path="/targetAct" parameter="usr" scope="request" type="com.aswata.report.action.targetAct">
+				<forward name="success" path=".target" />
+				<forward name="failed" path=".errPage"></forward>
+			</action>
+			
 		<!-- Risk -->
 			<action path="/riskProfile" parameter="usr" scope="request" type="com.aswata.report.forward.riskFwd">
 				<forward name="success" path=".riskProfile" />
