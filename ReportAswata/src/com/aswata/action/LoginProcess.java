@@ -56,7 +56,7 @@ public class LoginProcess extends Action{
     		  
     		Premi = sql.getDashoardPremi();
     		target = sql.getDashoardTarget();
-    		rasio = sql.getDashoardRiskProfile();
+//    		rasio = sql.getDashoardRiskProfile();
     		
     		BigDecimal tempPremi = new BigDecimal(Premi);
     		DecimalFormat df = new DecimalFormat("#,###");
