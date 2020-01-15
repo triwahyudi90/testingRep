@@ -98,8 +98,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="menu2.jsp"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="/Mars/dashboard.do"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+            <li class="active"><a href="premi.do"><i class="fa fa-circle-o"></i> PREMI</a></li>
+            <li><a href="target.do"><i class="fa fa-circle-o"></i> TARGET</a></li>
           </ul>
         </li>
         
