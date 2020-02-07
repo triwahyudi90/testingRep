@@ -157,7 +157,6 @@
 	          	</div>
 	        </div>
 	        <div class="box-body">
-<!-- 	        	<form action="viewRepCimbAct.do" method="POST" name="jurnal"> -->
 	        	<form action="rptBankAct.do" method="POST" name="jurnal">
 	          	<div class="col-xs-2">
 		    		<label>Dari Tanggal</label>
