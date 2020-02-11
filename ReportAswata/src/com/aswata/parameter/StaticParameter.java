@@ -29,7 +29,7 @@ public class StaticParameter {
 			  return "d:\\data\\Download\\MARKETING\\MAYBANK";
 		  } else if (folder.equals("PERMATA")) {
 			  return "d:\\data\\Download\\MARKETING\\PERMATA";
-		  } else if (folder.equals("RESUME PRODUKSI")) {
+		  } else if (folder.equals("PRODUKSI")) {
 			  return "d:\\data\\Download\\MARKETING\\PRODUKSI";
 		  } else {
 			  return "d:\\data\\Download\\MARKETING\\UOB"; 
