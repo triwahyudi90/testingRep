@@ -40,28 +40,8 @@ public class rptBankAct extends org.apache.struts.action.Action{
 			String dir = "";
 			System.out.println("dt1: " + dt1 + "dt2:" + dt2 + "bank:" + bank);
 			
-			if(bank.equals("ALL BANK - CUT OFF")){
-				dir = "d:\\data\\Download\\MARKETING\\ALL BANK";
-			} else if (bank.equals("BCA")){
-				dir = "d:\\data\\Download\\MARKETING\\BCA";
-			} else if (bank.equals("BNI")){
-				dir = "d:\\data\\Download\\MARKETING\\BNI";
-			} else if (bank.equals("BRI")){
-				dir = "d:\\data\\Download\\MARKETING\\BRI";
-			} else if (bank.equals("CIMB NIAGA")){
-				dir = "d:\\data\\Download\\MARKETING\\CIMBNIAGA";
-			} else if (bank.equals("MAYBANK")){
-				dir = "d:\\data\\Download\\MARKETING\\MAYBANK";
-			} else if (bank.equals("MANDIRI")){
-				dir = "d:\\data\\Download\\MARKETING\\MANDIRI";
-			} else if (bank.equals("PERMATA")){
-				dir = "d:\\data\\Download\\MARKETING\\PERMATA";
-			} else if (bank.equals("RESUME PRODUKSI")){
-				dir = "d:\\data\\Download\\MARKETING\\PRODUKSI";
-			} else {
-				dir = "d:\\data\\Download\\MARKETING\\UOB BUANA";
-			}
 			lph = sql.getReportBank(bank, dt1, dt2);
+			System.out.println("size:" + lph.size());
 			if (lph.size() > 0){
 			  request.setAttribute("fn", lph);
 			  request.getSession(true).setAttribute("llsp", lph);

@@ -6,12 +6,20 @@
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 
-  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dashboard</title>
+  <title>Maybank</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+ 
+<!--   <link rel="stylesheet" href="scripts/bootstrap/css/bootstrap.min.css"> -->
+<!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+<!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"> -->
+<!--   <link rel="stylesheet" href="https://https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"> -->
+<!--   <link rel="stylesheet" href="dist/css/AdminLTE.css"> -->
+<!--   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css"> -->
+<!--   <link rel="stylesheet" href="dist/css/component/bootstrap-datepicker/bootstrap-datepicker.min.css"> -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
@@ -20,12 +28,10 @@
   <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/fixedColumn.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> 
-  
+  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/fixedColumn.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.Iterator" %>
@@ -34,36 +40,56 @@
 <%@ page import="com.aswata.report.entity.RoleSubMenu" %>
 
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-
   <header class="main-header">
-    <!-- Logo -->
-    <a href="../../index2.html" class="logo">
-      <span class="logo-mini"><b>AWT</b></span>
+    <a href="/Mars/dashboard.do" class="logo">
+      <span class="logo-mini"><b>-</b></span>
       <span class="logo-lg"><b>Report Aswata</b></span>
     </a>
-    <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
+
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="dist/img/download.png" class="user-image" alt="User Image">
+              <span class="hidden-xs">${userlogin}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="user-header">
+                <img src="dist/img/download.png" class="img-circle" alt="User Image">
+                <p>
+                  ${userlogin} - Kode Cabang ${kodecabang}
+                  <small>Member since Nov. 2012</small>
+                </p>
+              </li>
+              <li class="user-footer">
+                <div class="pull-right">
+                  <a href="LogoutProcess.do" class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li>
+            </ul>
+            </li>
+			<li>
+				<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+			</li>
+        </ul>
+      </div>
     </nav>
   </header>
-  
   <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="dist/img/download.png" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p>${userlogin}</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
+	    <div class="user-panel">
+	        <div class="pull-left image">
+	          <img src="dist/img/download.png" class="img-circle" alt="User Image">
+	        </div>
+	        <div class="pull-left info">
+	          <p>${userlogin}</p>
+	          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+	        </div>
+	      </div>	
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="treeview">
@@ -127,30 +153,32 @@
 			<a href="LogoutProcess.do">
 			<i class="fa fa-power-off"></i> <span>Logout</span></a>
 		</li>
+        
       </ul>
     </section>
     <!-- /.sidebar -->
   </aside>
-  
+
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Report Marketing
-        <small>Preview</small>
+        Report
+        <small>Produksi</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Marketing</a></li>
         <li><a href="#">Report</a></li>
-        <li class="active">Bank</li>
+        <li class="active">Produksi</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-    	<div class="box">
+	
+	<div class="box">
     		<div class="box-header with-border">
-	        	<h3 class="box-title">Report Bank Marketing</h3>
+	        	<h3 class="box-title">Report Produksi</h3>
 	        	<div class="box-tools pull-right">
 	            	<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
 	              	<i class="fa fa-minus"></i></button>
@@ -158,32 +186,32 @@
 	        </div>
 	        <div class="box-body">
 	        	<form action="rptBankAct.do" method="POST" name="jurnal">
-	          	<div class="col-xs-2">
-		    		<label>Dari Tanggal</label>
-	    		</div>
-	    		<div class="col-xs-3">
-	    			<div class="input-group date">
-	                  <div class="input-group-addon">
-	                    <i class="fa fa-calendar"></i>
-	                  </div>
-	                  <input name="dt1" type="text" class="form-control pull-right" id="datepicker">
-	                </div>
-	    		</div>
-	    		<br><br>
-	    		<div class="col-xs-2">
-		    		<label>Hingga Tanggal </label>
-	    		</div>
-	    		<div class="col-xs-3">
-	    			<div class="input-group date">
-	                  <div class="input-group-addon">
-	                    <i class="fa fa-calendar"></i>
-	                  </div>
-	                  <input name="dt2" type="text" class="form-control pull-right" id="datepicker1">
-	                </div>
-	    		</div>
-	    		<br><br>
-	    		<div class="col-xs-2">
-		    		<label>Pilih Bank</label>
+		          	<div class="col-xs-2">
+			    		<label>Dari Tanggal </label>
+		    		</div>
+		    		<div class="col-xs-3">
+		    			<div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-calendar"></i>
+		                  </div>
+		                  <input name="dt1" type="text" class="form-control pull-right" id="datepicker">
+		                </div>
+		    		</div>
+		    		<br><br>
+		    		<div class="col-xs-2">
+			    		<label>Hingga Tanggal </label>
+		    		</div>
+		    		<div class="col-xs-3">
+		    			<div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-calendar"></i>
+		                  </div>
+		                  <input name="dt2" type="text" class="form-control pull-right" id="datepicker1">
+		                </div>
+		    		</div>
+		    		<br><br>	
+		    		<div class="col-xs-2">
+		    		<label>Pilih Laporan</label>
 	    		</div>
 	    		<div class="col-xs-3">
 	    			<select name = "rpt" class="form-control select2" style="width: 100%;">
@@ -193,14 +221,15 @@
 		            </select>
 	    		</div>
 	    		<br><br>
-				<div class="col-xs-5">
-					<button class="btn btn-default" type="button" data-dismiss="modal" onclick="document.forms['jurnal'].submit(); return valdata();">Search</button>
-	        	</div>
+					<div class="col-xs-5">
+						<button class="btn btn-default" type="button" data-dismiss="modal" onclick="document.forms['jurnal'].submit(); return valdata();">Search</button>
+<!-- 		        		<button onclick="exportToExcel('dtHorizontalVerticalExample', 'Testing Excel')" class="btn btn-success">Export Table Data To Excel File</button> -->
+		        	</div>
 	        	</form>
 	        </div>
     	</div> 
-    		
-    	<div class="box">
+		
+		<div class="box">
     		<div class="box-header with-border">
 	          <h3 class="box-title">Report Data Produksi</h3>
 	          	<div class="box-tools pull-right">
@@ -210,8 +239,8 @@
 	         	</div>
 	        </div>
 	        <div class="box-body">
-	        	<table id="example2" class="table table-bordered table-hover" cellspacing="0" width="100%">
-					  <thead>
+	        	<table id="example2" class="table table-shopping" cellspacing="0" width="100%">
+					<thead>
 						  <tr>
 							  <th>NO</th>
 							  <th>PERIODE</th>
@@ -233,31 +262,45 @@
 						  		</tr>
 						  </c:forEach>
 					  </tbody>
-				  </table>
+              	</table>
 	        </div>
     	</div>
-    	</section>
-  	</div>
-	</div>
-
+	</section>
+</div>
 <footer class="main-footer">
   <div class="pull-right hidden-xs">
-    <b>Version</b> 2.3.8
+    <b>Version</b> 1.0.1
   </div>
   <strong>Copyright &copy; 2019 PT Asuransi Wahana Tata</strong> All rights
   reserved.
 </footer>
-   
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane" id="control-sidebar-home-tab"></div>
+      <div class="tab-pane" id="control-sidebar-settings-tab"></div>
+    </div>
+</aside>
+
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
 <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="dist/js/adminlte.min.js"></script>
-<script src="dist/js/demo.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+<script src="dist/js/demo.js"></script>
 <script>
   $(document).ready(function(){
 	var table = $('#example2').DataTable({
@@ -286,5 +329,6 @@
 	    });
   })
 </script>
+
 </body>
 </html>
