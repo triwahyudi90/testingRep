@@ -77,7 +77,7 @@
 			<!-- PRODUKSI -->
 				<definition name=".prodClaim" path="/WEB-INF/pages/Claim/AgentRetail/produksi/prodClaim.jsp"></definition>
     		
-    <!-- marketing -->
+    <!-- MARKETING -->
 		<!-- BANK -->
 			<!-- ALL -->
 				<definition name=".allbankCutOff" path="/WEB-INF/pages/Marketing/Bank/Allbank/CutOff.jsp"></definition>
@@ -107,4 +107,9 @@
 		<!-- REPORT -->
 			<!-- BANK -->
 				<definition name=".rptBank" path="/WEB-INF/pages/Marketing/Report/bank/rptBank.jsp"></definition>
+				
+	<!-- AUDIT -->
+		<!-- POLICY -->
+			<!-- POPULASI -->
+				<definition name=".populasiAcceptance" path="/WEB-INF/pages/Audit/policy/populasi/populasiAcceptance.jsp"></definition>
 </tiles-definitions>

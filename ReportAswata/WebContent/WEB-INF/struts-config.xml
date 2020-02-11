@@ -246,6 +246,18 @@
 					<forward name="success" path=".rptBank" />
 					<forward name="failed" path=".errPage"></forward>
 				</action>
+	
+	<!-- AUDIT -->
+		<!-- POLICY -->
+			<!-- POPULASI -->
+				<action path="/populasiAcceptance" parameter="usr" scope="request" type="com.aswata.report.forward.populasiAcceptanceFwd">
+						<forward name="success" path=".populasiAcceptance" />
+						<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/populasiAcceptanceAct" parameter="usr" scope="request" type="com.aswata.report.action.populasiAcceptanceAct">
+					<forward name="success" path=".populasiAcceptance" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
 				
 	<!-- Selesai -->
 		
