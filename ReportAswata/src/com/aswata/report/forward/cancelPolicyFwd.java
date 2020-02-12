@@ -22,7 +22,7 @@ import com.aswata.report.function.sqlFunction;
  * @author Tri Wahyudi
  *
  */
-public class populasiAcceptanceFwd extends org.apache.struts.action.Action{
+public class cancelPolicyFwd extends org.apache.struts.action.Action{
 	
 	private static String SUCCESS = "success";
 

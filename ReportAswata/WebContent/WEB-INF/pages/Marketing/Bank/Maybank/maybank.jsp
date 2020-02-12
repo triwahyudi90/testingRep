@@ -13,13 +13,6 @@
   <title>Maybank</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
  
-<!--   <link rel="stylesheet" href="scripts/bootstrap/css/bootstrap.min.css"> -->
-<!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"> -->
-<!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"> -->
-<!--   <link rel="stylesheet" href="https://https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"> -->
-<!--   <link rel="stylesheet" href="dist/css/AdminLTE.css"> -->
-<!--   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css"> -->
-<!--   <link rel="stylesheet" href="dist/css/component/bootstrap-datepicker/bootstrap-datepicker.min.css"> -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
@@ -177,47 +170,45 @@
     <section class="content">
 	
 	<div class="box">
-    		<div class="box-header with-border">
-	        	<h3 class="box-title">Report Bank Maybank</h3>
-	        	<div class="box-tools pull-right">
-	            	<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-	              	<i class="fa fa-minus"></i></button>
-	          	</div>
-	        </div>
-	        <div class="box-body">
-	        	<form action="maybankAct.do" method="POST" name="jurnal">
-		          	<div class="col-xs-2">
-			    		<label>Dari Tanggal </label>
-		    		</div>
-		    		<div class="col-xs-3">
-		    			<div class="input-group date">
-		                  <div class="input-group-addon">
-		                    <i class="fa fa-calendar"></i>
-		                  </div>
-		                  <input name="dt1" type="text" class="form-control pull-right" id="datepicker">
-		                </div>
-		    		</div>
-		    		<br><br>
-		    		<div class="col-xs-2">
-			    		<label>Hingga Tanggal </label>
-		    		</div>
-		    		<div class="col-xs-3">
-		    			<div class="input-group date">
-		                  <div class="input-group-addon">
-		                    <i class="fa fa-calendar"></i>
-		                  </div>
-		                  <input name="dt2" type="text" class="form-control pull-right" id="datepicker1">
-		                </div>
-		    		</div>
-		    		<br><br>	
-					<div class="col-xs-5">
-						<button class="btn btn-default" type="button" data-dismiss="modal" onclick="document.forms['jurnal'].submit(); return valdata();">Search</button>
+   		<div class="box-header with-border">
+        	<h3 class="box-title">Report Bank Maybank</h3>
+        	<div class="box-tools pull-right">
+            	<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+              	<i class="fa fa-minus"></i></button>
+          	</div>
+        </div>
+        <div class="box-body">
+        	<form action="maybankAct.do" method="POST" name="jurnal">
+	          	<div class="col-xs-2">
+		    		<label>Dari Tanggal </label>
+	    		</div>
+	    		<div class="col-xs-3">
+	    			<div class="input-group date">
+	                  <div class="input-group-addon">
+	                    <i class="fa fa-calendar"></i>
+	                  </div>
+	                  <input name="dt1" type="text" class="form-control pull-right" id="datepicker">
+	                </div>
+	    		</div>
+	    		<br><br>
+	    		<div class="col-xs-2">
+		    		<label>Hingga Tanggal </label>
+	    		</div>
+	    		<div class="col-xs-3">
+	    			<div class="input-group date">
+	                  <div class="input-group-addon">
+	                    <i class="fa fa-calendar"></i>
+	                  </div>
+	                  <input name="dt2" type="text" class="form-control pull-right" id="datepicker1">
+	                </div>
+	    		</div>
+	    		<br><br>	
+				<div class="col-xs-5">
+					<button class="btn btn-default" type="button" data-dismiss="modal" onclick="document.forms['jurnal'].submit(); return valdata();">Search</button>
 <!-- 		        		<button onclick="exportToExcel('dtHorizontalVerticalExample', 'Testing Excel')" class="btn btn-success">Export Table Data To Excel File</button> -->
-		        	</div>
-	        	</form>
-	        </div>
-    	</div> 
-		
+	        	</div>
+        	</form>
+        </div>
 		<div class="box">
     		<div class="box-header with-border">
 	          <h3 class="box-title">Data Produksi Bank Maybank</h3>
@@ -274,6 +265,7 @@
               	</table>
 	        </div>
     	</div>
+    </div>
 	</section>
 </div>
 <footer class="main-footer">

@@ -110,6 +110,8 @@
 				
 	<!-- AUDIT -->
 		<!-- POLICY -->
+			<!-- CANCEL POLICY -->
+				<definition name=".cancelPolicy" path="/WEB-INF/pages/Audit/policy/cancel/cancelPolicy.jsp"></definition>
 			<!-- POPULASI -->
 				<definition name=".populasiAcceptance" path="/WEB-INF/pages/Audit/policy/populasi/populasiAcceptance.jsp"></definition>
 </tiles-definitions>
