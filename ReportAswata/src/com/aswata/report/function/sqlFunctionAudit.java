@@ -151,6 +151,7 @@ public class sqlFunctionAudit {
 				TempCancel.setAmtOri(rs.getBigDecimal("AMOUNT_ORIGINAL"));
 				TempCancel.setAmtBase(rs.getBigDecimal("AMOUNT_BASE"));
 				lbb.add(TempCancel);
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
