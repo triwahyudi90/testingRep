@@ -251,8 +251,8 @@
 		<!-- POLICY -->
 			<!-- CANCEL POLICY -->
 				<action path="/cancelPolicy" parameter="usr" scope="request" type="com.aswata.report.forward.cancelPolicyFwd">
-						<forward name="success" path=".cancelPolicy" />
-						<forward name="failed" path=".errPage"></forward>
+					<forward name="success" path=".cancelPolicy" />
+					<forward name="failed" path=".errPage"></forward>
 				</action>
 				<action path="/cancelPolicyAct" parameter="usr" scope="request" type="com.aswata.report.action.cancelPolicyAct">
 					<forward name="success" path=".cancelPolicy" />
@@ -260,8 +260,8 @@
 				</action>
 			<!-- PRODUK POLICY -->
 				<action path="/populasiAcceptance" parameter="usr" scope="request" type="com.aswata.report.forward.populasiAcceptanceFwd">
-						<forward name="success" path=".populasiAcceptance" />
-						<forward name="failed" path=".errPage"></forward>
+					<forward name="success" path=".populasiAcceptance" />
+					<forward name="failed" path=".errPage"></forward>
 				</action>
 				<action path="/populasiAcceptanceAct" parameter="usr" scope="request" type="com.aswata.report.action.populasiAcceptanceAct">
 					<forward name="success" path=".populasiAcceptance" />
