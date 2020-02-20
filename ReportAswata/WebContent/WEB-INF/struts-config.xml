@@ -65,23 +65,23 @@
 	
 	<!-- CLAIM -->
 		<!-- CS -->
-			<!-- DJARUM -->
-			<action path="/djarumCs" parameter="usr" scope="request" type="com.aswata.report.forward.djarumCsFwd">
-					<forward name="success" path=".djarumCs" />
+			<!-- REGISTER -->
+			<action path="/regCs" parameter="usr" scope="request" type="com.aswata.report.forward.regCsFwd">
+					<forward name="success" path=".regCs" />
 					<forward name="failed" path=".errPage"></forward>
 			</action>
-			<action path="/djarumCsAct" parameter="usr" scope="request" type="com.aswata.report.action.djarumCsAct">
-				<forward name="success" path=".djarumCs" />
+			<action path="/regCsAct" parameter="usr" scope="request" type="com.aswata.report.action.regCsAct">
+				<forward name="success" path=".regCs" />
 				<forward name="failed" path=".errPage"></forward>
 			</action>
 		<!-- LKS -->
-			<!-- DJARUM -->
-			<action path="/djarumLks" parameter="usr" scope="request" type="com.aswata.report.forward.djarumLksFwd">
-					<forward name="success" path=".djarumLks" />
+			<!-- REGISTER -->
+			<action path="/regLks" parameter="usr" scope="request" type="com.aswata.report.forward.regLksFwd">
+					<forward name="success" path=".regLks" />
 					<forward name="failed" path=".errPage"></forward>
 			</action>
-			<action path="/djarumLksAct" parameter="usr" scope="request" type="com.aswata.report.action.djarumLksAct">
-				<forward name="success" path=".djarumLks" />
+			<action path="/regLksAct" parameter="usr" scope="request" type="com.aswata.report.action.regLksAct">
+				<forward name="success" path=".regLks" />
 				<forward name="failed" path=".errPage"></forward>
 			</action>
 		<!-- AGENT & RETAIL -->
@@ -131,6 +131,15 @@
 				</action>
 				<action path="/bcaAct" parameter="usr" scope="request" type="com.aswata.report.action.bcaAct">
 					<forward name="success" path=".bca" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>	
+			<!-- BANK BUMN -->
+				<action path="/bankBumn" parameter="usr" scope="request" type="com.aswata.report.forward.bankBumnFwd">
+					<forward name="success" path=".bankBumn" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/bankBumnAct" parameter="usr" scope="request" type="com.aswata.report.action.bankBumnAct">
+					<forward name="success" path=".bankBumn" />
 					<forward name="failed" path=".errPage"></forward>
 				</action>	
 			<!-- BRI -->

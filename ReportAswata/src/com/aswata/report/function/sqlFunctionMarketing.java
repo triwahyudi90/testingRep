@@ -15,6 +15,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.aswata.report.entity.Tender;
+import com.aswata.report.entity.bankBumn;
 import com.aswata.report.entity.bni;
 import com.aswata.report.entity.bri;
 import com.aswata.report.entity.cimbNiaga;
@@ -185,6 +186,84 @@ public class sqlFunctionMarketing {
 				bii.setTahun(rs.getString("TAHUN"));
 				bii.setBulan(rs.getString("BULAN"));
 				lbb.add(bii);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnDB(conn, stat, rs);
+		} return lbb;
+	}
+	
+	public List getBankBumn (String dt1, String dt2, String bank){
+		List lbb = new ArrayList();
+		bankBumn tempBumn = null;
+		Connection conn = null;
+		PreparedStatement stat = null;
+		ResultSet rs = null;
+		String sql = "";
+		
+		try {
+			conn = DatasourceEntry.getInstance().getPostgreDWHDS().getConnection();
+			sql = "SELECT * FROM PRODUKSI_MARKETING_BANK_BUMN WHERE";
+					
+					if ("BNI".equals(bank)){
+						sql += " TRANSACTION_DATE BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY') AND DESC_BANK = 'BNI' ";
+					} else if ("BRI".equals(bank)){
+						sql += " TRANSACTION_DATE BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY') AND DESC_BANK = 'BRI' ";
+					} else if ("MANDIRI".equals(bank)){
+						sql += " TRANSACTION_DATE BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY') AND DESC_BANK = 'MANDIRI' ";
+					} else {
+						sql += " TRANSACTION_DATE BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY')";
+					}
+					sql += "ORDER BY TRANSACTION_DATE";
+			
+			System.out.println("SQL getBankBumn -->" + sql);
+			int i = 1;
+			stat = conn.prepareStatement(sql);
+			if ("BNI".equals(bank)){
+				stat.setString(i++, dt1.trim());
+				stat.setString(i++, dt2.trim());
+			} else if ("BRI".equals(bank)){
+				stat.setString(i++, dt1.trim());
+				stat.setString(i++, dt2.trim());
+			} else if ("MANDIRI".equals(bank)){
+				stat.setString(i++, dt1.trim());
+				stat.setString(i++, dt2.trim());
+			} else {
+				stat.setString(i++, dt1.trim());
+				stat.setString(i++, dt2.trim());
+			}
+			
+			rs = stat.executeQuery();
+			while (rs.next()) {
+				tempBumn = new bankBumn();
+				tempBumn.setPolicyNo(rs.getString("POLICY_NUMBER"));
+				tempBumn.setBsnId(rs.getString("COB"));
+				tempBumn.setBranch(rs.getString("BRANCH_NAME"));
+				tempBumn.setSegment(rs.getString("SEGMEN"));
+				tempBumn.setBusCode(rs.getString("BUSINESS_CODE"));
+				tempBumn.setBusType(rs.getString("BUSINESS_TYPE"));
+				tempBumn.setReqName(rs.getString("REQUESTOR_NAME"));
+				tempBumn.setInsName(rs.getString("INSURED_NAME"));
+				tempBumn.setQqName(rs.getString("QQ_NAME"));
+				tempBumn.setTrDate(rs.getDate("TRANSACTION_DATE"));
+				tempBumn.setStartDate(rs.getString("INSURANCE_STARTDATE"));
+				tempBumn.setExpiryDate(rs.getString("INSURANCE_EXPIRYDATE"));
+				tempBumn.setPremiGross(rs.getBigDecimal("PREMI"));
+				tempBumn.setPremiAdjust(rs.getBigDecimal("PRM_ADJUST"));
+				tempBumn.setPremiNett(rs.getBigDecimal("PREMI_NET"));
+				tempBumn.setStmp(rs.getBigDecimal("STMP"));
+				tempBumn.setcPol(rs.getBigDecimal("C_POL"));
+				tempBumn.setJasa(rs.getBigDecimal("JASA"));
+				tempBumn.setComm(rs.getBigDecimal("COMM"));
+				tempBumn.setPpn(rs.getBigDecimal("PPN"));
+				tempBumn.setPph(rs.getBigDecimal("PPH"));
+				tempBumn.setOs(rs.getBigDecimal("OSTD_IDR_PERPOLIS"));
+				tempBumn.setTsi(rs.getBigDecimal("TSI_IN_IDR"));
+				tempBumn.setStatus(rs.getString("STATUS_OSTD_IDR_PERPOLIS"));
+				tempBumn.setBankerClause(rs.getString("CLAUSE_BANK"));
+				tempBumn.setDescBank(rs.getString("DESC_BANK"));
+				lbb.add(tempBumn);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

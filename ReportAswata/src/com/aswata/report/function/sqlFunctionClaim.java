@@ -14,9 +14,8 @@ import org.apache.log4j.Logger;
 
 import com.aswata.report.entity.agentRetailClaim;
 import com.aswata.report.entity.agentRetailProd;
-import com.aswata.report.entity.cimbNiaga;
 import com.aswata.report.entity.djarumCs;
-import com.aswata.report.entity.djarumLks;
+import com.aswata.report.entity.regLks;
 import com.aswata.singleton.DatasourceEntry;
 
 /**
@@ -263,9 +262,9 @@ public class sqlFunctionClaim {
 		} return lbb;
 	}
 	
-	public List getClaimDjarumLks (String dt1, String dt2, String bsn, String branch){
+	public List getClaimRegLks (String dt1, String dt2, String bsn, String branch, int client){
 		List lbb = new ArrayList();
-		djarumLks tempDjarum = null;
+		regLks tempLks = null;
 		Connection conn = null;
 		PreparedStatement stat = null;
 		ResultSet rs = null;
@@ -273,7 +272,7 @@ public class sqlFunctionClaim {
 		
 		try {
 			conn = DatasourceEntry.getInstance().getPostgreDWHDS().getConnection();
-			sql = "SELECT * FROM DJARUM_LKS WHERE ";
+			sql = "SELECT * FROM CLAIM_LKS WHERE ";
 			
 			if ((!"".equals(dt1)) && (!"".equals(dt2))){
 				if ("101".equals(branch)){
@@ -284,9 +283,9 @@ public class sqlFunctionClaim {
 					}
 				} else {
 					if ("0".equals(bsn)){
-						sql += " LKS_DATE >= ? AND LKS_DATE <= ? AND BRANCH_ID = ? ORDER BY CS_DATE";
+						sql += " LKS_DATE >= ? AND LKS_DATE <= ? AND BRANCH_ID = ? AND PARENT_ID = ? ORDER BY CS_DATE";
 					} else {
-						sql += " LKS_DATE >= ? AND LKS_DATE <= ? AND BSN_ID = ? AND BRANCH_ID = ? ORDER BY LKS_DATE";
+						sql += " LKS_DATE >= ? AND LKS_DATE <= ? AND BSN_ID = ? AND BRANCH_ID = ? AND PARENT_ID = ? ORDER BY LKS_DATE";
 					}
 				}
 			} 
@@ -309,11 +308,13 @@ public class sqlFunctionClaim {
 						stat.setString(i++, dt1.trim());
 						stat.setString(i++, dt2.trim());
 						stat.setString(i++, branch.trim());
+						stat.setInt(i++, client);
 					} else {
 						stat.setString(i++, dt1.trim());
 						stat.setString(i++, dt2.trim());
 						stat.setString(i++, bsn.trim());
 						stat.setString(i++, branch.trim());
+						stat.setInt(i++, client);
 					}
 				}
 			} else {
@@ -322,24 +323,23 @@ public class sqlFunctionClaim {
 			}
 			rs = stat.executeQuery();
 			while (rs.next()) {
-				tempDjarum = new djarumLks();
-				tempDjarum.setPeriod(rs.getString("POLICY_PERIOD"));
-				tempDjarum.setUwYear(rs.getString("UW_YEAR"));
-				tempDjarum.setPolicyNo(rs.getString("POLICY_NUMBER"));
-				tempDjarum.setBsn(rs.getString("BSN_ID"));
-				tempDjarum.setBranch(rs.getString("BRANCH_ID"));
-				tempDjarum.setReqId(rs.getString("REQUESTOR_ID"));
-				tempDjarum.setReqName(rs.getString("REQUESTOR_NAME"));
-				tempDjarum.setLksNo(rs.getString("LKS_NUMBER"));
-				tempDjarum.setLksDate(rs.getString("LKS_DATE"));
-				tempDjarum.setLossDate(rs.getString("LOSS_DATE"));
-				tempDjarum.setInsuredName(rs.getString("INSURED_NAME"));
-				tempDjarum.setSiCcy(rs.getString("SI_CURR"));
-				tempDjarum.setTsi(rs.getString("SUM_INSURED"));
-				tempDjarum.setEstCcy(rs.getString("EST_CURR"));
-				tempDjarum.setLossEstimation(rs.getBigDecimal("LOSS_ESTIMATION"));
-				tempDjarum.setType(rs.getString("TYPE_OF_LOSS"));
-				lbb.add(tempDjarum);
+				tempLks = new regLks();
+				tempLks.setPeriod(rs.getString("POLICY_PERIOD"));
+				tempLks.setUwYear(rs.getString("UW_YEAR"));
+				tempLks.setPolicyNo(rs.getString("POLICY_NUMBER"));
+				tempLks.setBsn(rs.getString("BSN_ID"));
+				tempLks.setBranch(rs.getString("BRANCH_ID"));
+				tempLks.setReqId(rs.getString("REQUESTOR_ID"));
+				tempLks.setReqName(rs.getString("REQUESTOR_NAME"));
+				tempLks.setLksNo(rs.getString("LKS_NUMBER"));
+				tempLks.setLksDate(rs.getString("LKS_DATE"));
+				tempLks.setLossDate(rs.getString("LOSS_DATE"));
+				tempLks.setInsuredName(rs.getString("INSURED_NAME"));
+				tempLks.setSiCcy(rs.getString("SI_CURR"));
+				tempLks.setTsi(rs.getString("SUM_INSURED"));
+				tempLks.setLossEstimation(rs.getBigDecimal("LOSS_ESTIMATION"));
+				tempLks.setType(rs.getString("TYPE_OF_LOSS"));
+				lbb.add(tempLks);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

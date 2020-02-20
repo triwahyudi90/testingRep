@@ -66,11 +66,11 @@
     
     <!-- CLAIM -->
     	<!-- CS -->
-			<!-- DJARUM -->
-				<definition name=".djarumCs" path="/WEB-INF/pages/Claim/Cs/djarum/djarumCs.jsp"></definition>
+			<!-- REGISTER -->
+				<definition name=".regCs" path="/WEB-INF/pages/Claim/Cs/register/regCs.jsp"></definition>
 		<!-- LKS -->
-			<!-- DJARUM -->
-				<definition name=".djarumLks" path="/WEB-INF/pages/Claim/Lks/djarum/djarumLks.jsp"></definition>
+			<!-- REGISTER -->
+				<definition name=".regLks" path="/WEB-INF/pages/Claim/Lks/register/regLks.jsp"></definition>
 		<!-- AGENT & RETAIL -->
 			<!-- CLAIM -->
 				<definition name=".Claim" path="/WEB-INF/pages/Claim/AgentRetail/claim/Claim.jsp"></definition>
@@ -82,6 +82,8 @@
 			<!-- ALL -->
 				<definition name=".allbankCutOff" path="/WEB-INF/pages/Marketing/Bank/Allbank/CutOff.jsp"></definition>
 				<definition name=".allbankRewards" path="/WEB-INF/pages/Marketing/Bank/Allbank/Rewards.jsp"></definition>
+			<!-- BANK BUMN -->
+				<definition name=".bankBumn" path="/WEB-INF/pages/Marketing/Bank/Bumn/bankBumn.jsp"></definition>
 			<!-- BCA -->
 				<definition name=".bca" path="/WEB-INF/pages/Marketing/Bank/Bca/bca.jsp"></definition>
 			<!-- BRI -->

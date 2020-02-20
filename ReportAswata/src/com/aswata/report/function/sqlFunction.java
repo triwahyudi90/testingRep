@@ -27,6 +27,7 @@ import com.aswata.report.entity.RoleMenu;
 import com.aswata.report.entity.RoleSubMenu;
 import com.aswata.report.entity.RptOpt;
 import com.aswata.report.entity.cimbNiaga;
+import com.aswata.report.entity.client;
 import com.aswata.report.entity.loginReport;
 import com.aswata.report.entity.loginReport2;
 import com.aswata.report.entity.target;
@@ -636,6 +637,36 @@ public class sqlFunction {
 			}
 		} catch (Exception e) {
 			log.error("getbranch :" + e.getMessage());
+		} finally {
+			closeConnDB(conn, stat, rs);
+		} return lbb;
+	}
+	
+	public List getClient (){
+		List lbb = new ArrayList();
+		client tmpClient = null;
+		Connection conn = null;
+		PreparedStatement stat = null;
+		ResultSet rs = null;
+		String sql = "";
+		
+		try {
+			conn = DatasourceEntry.getInstance().getOracleDS().getConnection();
+			sql = "SELECT CLIENT_ID,NAME,TYPE,PARENT_ID FROM M_CLIENT WHERE PARENT_ID IS NULL AND TYPE NOT IN ('0')";
+			System.out.println("SQL getClient -->" + sql);
+			int i = 1;
+			stat = conn.prepareStatement(sql);
+			rs = stat.executeQuery();
+			while (rs.next()) {
+				tmpClient = new client();
+				tmpClient.setClientId(rs.getString("CLIENT_ID"));
+				tmpClient.setName(rs.getString("NAME"));
+				tmpClient.setType(rs.getString("TYPE"));
+				tmpClient.setParentId(rs.getString("PARENT_ID"));
+				lbb.add(tmpClient);
+			}
+		} catch (Exception e) {
+			log.error("getClient :" + e.getMessage());
 		} finally {
 			closeConnDB(conn, stat, rs);
 		} return lbb;

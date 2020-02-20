@@ -11,21 +11,21 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Claim Reg Djarum LKS</title>
+  <title>Claim Register LKS</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<!--   <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"> -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css">
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="bower_components/datatables.net-bs/css/fixedColumn.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.Iterator" %>
@@ -155,7 +155,7 @@
 	          	</div>
 	        </div>
 	        <div class="box-body">
-	        	<form action="djarumLksAct.do" method="POST" name="jurnal">
+	        	<form action="regLksAct.do" method="POST" name="jurnal">
 		          	<div class="col-xs-2">
 			    		<label>Dari Tanggal </label>
 		    		</div>
@@ -198,6 +198,17 @@
 		    			<select name = "bsn" class="form-control select2" style="width: 100%;">
 		    				<c:forEach var="bsn" items="${bsn}" >
 		    					<option selected="selected" value ="${bsn.bsnId}">${bsn.cob}</option>
+		    				</c:forEach>
+		                </select>
+		    		</div>
+		    		<br><br>
+		    		<div class="col-xs-2">
+			    		<label>Client Name</label>
+		    		</div>
+		    		<div class="col-xs-3">
+		    			<select name = "client" class="form-control select2" style="width: 100%;">
+		    				<c:forEach var="client" items="${client}" >
+		    					<option selected="selected" name ="client" value ="${client.clientId}">${client.name}</option>
 		    				</c:forEach>
 		                </select>
 		    		</div>
@@ -298,23 +309,52 @@
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
-<!-- date-range-picker -->
+<script src="plugins/input-mask/jquery.inputmask.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
 <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="dist/js/adminlte.min.js"></script>
 <script src="dist/js/demo.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
 
 
 <script>
-  $(document).ready(function(){
+$(document).ready(function(){
 	var table = $('#example2').DataTable({
         scrollX:        true,
         scrollCollapse: true,
 		paging		: true,
+		processing  : true,
 		searching	: true,
-		info	: true
+		info	: true,
+		dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: [ 0, ':visible' ]
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                },
+				title: 'Download'
+            },
+            {
+				extend: 'colvis',
+				collectionLayout: 'fixed two-column'
+			}
+        ]
 	});
 	new $.fn.dataTable.FixedColumns( table );
 	});
@@ -329,6 +369,7 @@
 	      autoclose: true,
 	      format: "dd/mm/yyyy"
 	    });
+	  $('.select2').select2();
   })
 </script>
 
