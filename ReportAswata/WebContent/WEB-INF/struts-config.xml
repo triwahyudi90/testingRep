@@ -103,7 +103,18 @@
 				<forward name="success" path=".prodClaim" />
 				<forward name="failed" path=".errPage"></forward>
 			</action>
-		
+			
+		<!-- OUTSTANDING -->
+			<!-- MERIMEN FEE -->
+			<action path="/merimenFee" parameter="usr" scope="request" type="com.aswata.report.forward.merimenFeeFwd">
+					<forward name="success" path=".merimenFee" />
+					<forward name="failed" path=".errPage"></forward>
+			</action>
+			<action path="/merimenFeeAct" parameter="usr" scope="request" type="com.aswata.report.action.merimenFeeAct">
+				<forward name="success" path=".merimenFee" />
+				<forward name="failed" path=".errPage"></forward>
+			</action>
+			
 	<!-- marketing -->
 		<!-- BANK -->
 			<!-- ALL CUT OFF-->
@@ -179,7 +190,7 @@
 					<forward name="failed" path=".errPage"></forward>
 				</action>	
 			<!-- CIMB -->
-				<action path="/cimb" parameter="usr" scope="request" type="com.aswata.report.forward.cimbFwd">
+				<action path="/cimbNiaga" parameter="usr" scope="request" type="com.aswata.report.forward.cimbFwd">
 					<forward name="success" path=".cimb" />
 					<forward name="failed" path=".errPage"></forward>
 				</action>

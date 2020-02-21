@@ -76,7 +76,10 @@
 				<definition name=".Claim" path="/WEB-INF/pages/Claim/AgentRetail/claim/Claim.jsp"></definition>
 			<!-- PRODUKSI -->
 				<definition name=".prodClaim" path="/WEB-INF/pages/Claim/AgentRetail/produksi/prodClaim.jsp"></definition>
-    		
+    	<!-- OUTSTANDING -->
+			<!-- MERIMEN FEE -->
+				<definition name=".merimenFee" path="/WEB-INF/pages/Claim/OS/merimenFee/merimenFee.jsp"></definition>
+					
     <!-- MARKETING -->
 		<!-- BANK -->
 			<!-- ALL -->

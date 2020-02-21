@@ -140,7 +140,7 @@
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Claim</a></li>
         <li><a href="#">LKS</a></li>
-        <li class="active">Reg Djarum</li>
+        <li class="active">Register</li>
       </ol>
     </section>
 
@@ -148,7 +148,7 @@
     <section class="content">
 	    <div class="box">
     		<div class="box-header with-border">
-	        	<h3 class="box-title">Report Data LKS Reg Djarum</h3>
+	        	<h3 class="box-title">Report Data CLAIM REGISTER LKS</h3>
 	        	<div class="box-tools pull-right">
 	            	<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
 	              	<i class="fa fa-minus"></i></button>
@@ -222,7 +222,7 @@
     	
     	<div class="box">
     		<div class="box-header with-border">
-	          <h3 class="box-title">Data Claim LKS Reg Djarum</h3>
+	          <h3 class="box-title">Data Claim REGISTER LKS</h3>
 	          	<div class="box-tools pull-right">
 	           		<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
 	             		<i class="fa fa-minus"></i>

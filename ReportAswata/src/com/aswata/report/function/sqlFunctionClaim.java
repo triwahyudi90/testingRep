@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 import com.aswata.report.entity.agentRetailClaim;
 import com.aswata.report.entity.agentRetailProd;
 import com.aswata.report.entity.djarumCs;
+import com.aswata.report.entity.merimenFee;
 import com.aswata.report.entity.regLks;
 import com.aswata.singleton.DatasourceEntry;
 
@@ -340,6 +341,64 @@ public class sqlFunctionClaim {
 				tempLks.setLossEstimation(rs.getBigDecimal("LOSS_ESTIMATION"));
 				tempLks.setType(rs.getString("TYPE_OF_LOSS"));
 				lbb.add(tempLks);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnDB(conn, stat, rs);
+		} return lbb;
+	}
+	
+	public List getMerimenFee (String dt1, String dt2, String branch){
+		List lbb = new ArrayList();
+		merimenFee tempMerimen = null;
+		Connection conn = null;
+		PreparedStatement stat = null;
+		ResultSet rs = null;
+		String sql = "";
+		
+		try {
+			conn = DatasourceEntry.getInstance().getPostgreDWHDS().getConnection();
+			sql = "SELECT * FROM MERIMEN_FEE WHERE ";
+			
+			if ((!"".equals(dt1)) && (!"".equals(dt2))){
+				if ("101".equals(branch)){
+					sql += " TRANSACTION_DATE BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY')  ORDER BY TRANSACTION_DATE";
+				} else {
+					sql += " TRANSACTION_DATE BETWEEN TO_DATE(?,'DD/MM/YYYY') AND TO_DATE(?,'DD/MM/YYYY')  AND BRANCH_ID = ? ORDER BY TRANSACTION_DATE";
+				}
+			} 
+			System.out.println("SQL getMerimenFee -->" + sql);
+			int i = 1;
+			stat = conn.prepareStatement(sql);
+			
+			if ((!"".equals(dt1)) && (!"".equals(dt2))){
+				if ("101".equals(branch)){
+						stat.setString(i++, dt1.trim());
+						stat.setString(i++, dt2.trim());
+				} else {
+					stat.setString(i++, dt1.trim());
+					stat.setString(i++, dt2.trim());
+					stat.setString(i++, branch.trim());
+				}
+			}
+			rs = stat.executeQuery();
+			while (rs.next()) {
+				tempMerimen = new merimenFee();
+				tempMerimen.setBranchId(rs.getString("BRANCH_ID"));
+				tempMerimen.setBranchName(rs.getString("BRANCH_NAME"));
+				tempMerimen.setLksHeaderNo(rs.getString("LKSHEADER_NUM"));
+				tempMerimen.setClaimStatNo(rs.getString("CLAIMSTAT_NUM"));
+				tempMerimen.setPolicyNo(rs.getString("POLICY_NUMBER"));
+				tempMerimen.setInsuredName(rs.getString("INSURED_NAME"));
+				tempMerimen.setRiskName(rs.getString("RISK_NAME"));
+				tempMerimen.setCcy(rs.getString("CURR"));
+				tempMerimen.setclaimAmt(rs.getBigDecimal("CLAIM_AMT"));
+				tempMerimen.setMerimenFee(rs.getBigDecimal("MERIMEN_FEE"));
+				tempMerimen.setPaidTo(rs.getString("PAID_TO"));
+				tempMerimen.setDocumentNo(rs.getString("DOCUMENT_NUMBER"));
+				tempMerimen.setTrxDate(rs.getString("TRANSACTION_DATE"));
+				lbb.add(tempMerimen);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

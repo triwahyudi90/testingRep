@@ -194,6 +194,7 @@
 		    			<select name = "bank" class="form-control select2" style="width: 100%;">
 		    				<option>ALL - BANK</option>
 		    				<option>BNI</option>
+		    				<option>BTN</option>
 		                    <option>BRI</option>
 		                    <option>MANDIRI</option>
 		                </select>
