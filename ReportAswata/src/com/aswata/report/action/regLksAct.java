@@ -45,15 +45,7 @@ public class regLksAct extends org.apache.struts.action.Action{
 			String bsn = request.getParameter("bsn");
 			String branch = request.getParameter("branch");
 			int client = Integer.parseInt(request.getParameter("client"));
-				
-//			convert tgl
-//			SimpleDateFormat format = new SimpleDateFormat("mm/dd/yyyy");
-//			Date date1 = format.parse(dt1);
-//			Date date2 = format.parse(dt2);
-//			
-//			String newDate1 = new SimpleDateFormat("dd/mm/yyyy").format(date1);
-//			String newDate2 = new SimpleDateFormat("dd/mm/yyyy").format(date2);
-			
+							
 			System.out.println("dt1: " + dt1 + "dt2: " + dt2 + "bsn:" + bsn + "branch:" + branch + "client:" + client);
 			lph = sql.getClaimRegLks(dt1, dt2, bsn, branch, client);
 			
