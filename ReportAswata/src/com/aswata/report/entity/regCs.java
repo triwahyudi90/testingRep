@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  * @author Tri Wahyudi
  *
  */
-public class djarumCs {
+public class regCs {
 	
 	private String uwYear;
 	private String branch;
@@ -36,6 +36,23 @@ public class djarumCs {
 	private String noteNo;
 	private String status;
 	private String type;
+	private String clientId;
+	private String parentId;
+	
+	
+	
+	public String getClientId() {
+		return clientId;
+	}
+	public void setClientId(String clientId) {
+		this.clientId = clientId;
+	}
+	public String getParentId() {
+		return parentId;
+	}
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}
 	/**
 	 * @return the uwYear
 	 */

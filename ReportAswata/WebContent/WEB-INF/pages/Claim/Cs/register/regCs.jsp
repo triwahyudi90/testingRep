@@ -11,15 +11,15 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Claim Statement Reg Djarum</title>
+  <title>Claim Statement Register CS</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css">
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="bower_components/datatables.net-bs/css/fixedColumn.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -155,14 +155,14 @@
     <section class="content">
 	    <div class="box">
     		<div class="box-header with-border">
-	        	<h3 class="box-title">Report Data CS Reg Djarum</h3>
+	        	<h3 class="box-title">Report Data CLAIM REGISTER CS</h3>
 	        	<div class="box-tools pull-right">
 	            	<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
 	              	<i class="fa fa-minus"></i></button>
 	          	</div>
 	        </div>
 	        <div class="box-body">
-	        	<form action="djarumCsAct.do" method="POST" name="jurnal">
+	        	<form action="regCsAct.do" method="POST" name="jurnal">
 		          	<div class="col-xs-2">
 			    		<label>Dari Tanggal </label>
 		    		</div>
@@ -209,6 +209,17 @@
 		                </select>
 		    		</div>
 		    		<br><br>
+		    		<div class="col-xs-2">
+			    		<label>Client Name</label>
+		    		</div>
+		    		<div class="col-xs-3">
+		    			<select name = "client" class="form-control select2" style="width: 100%;">
+		    				<c:forEach var="client" items="${client}" >
+		    					<option selected="selected" name ="client" value ="${client.clientId}">${client.name}</option>
+		    				</c:forEach>
+		                </select>
+		    		</div>
+		    		<br><br>
 					<div class="col-xs-5">
 						<button class="btn btn-default" type="button" data-dismiss="modal" onclick="document.forms['jurnal'].submit(); return valdata();">Search</button>
 		        	</div>
@@ -218,7 +229,7 @@
     	
     	<div class="box">
     		<div class="box-header with-border">
-	          <h3 class="box-title">Data Claim Reg Djarum</h3>
+	          <h3 class="box-title">Data Claim Register CS</h3>
 	          	<div class="box-tools pull-right">
 	           		<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip">
 	             		<i class="fa fa-minus"></i>
@@ -352,6 +363,7 @@
 	      autoclose: true,
 	      format: "dd/mm/yyyy"
 	    });
+	  $('.select2').select2();
   })
 </script>
 

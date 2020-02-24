@@ -652,7 +652,7 @@ public class sqlFunction {
 		
 		try {
 			conn = DatasourceEntry.getInstance().getOracleDS().getConnection();
-			sql = "SELECT CLIENT_ID,NAME,TYPE,PARENT_ID FROM M_CLIENT WHERE PARENT_ID IS NULL AND TYPE NOT IN ('0','7')";
+			sql = "SELECT CLIENT_ID,NAME,TYPE,PARENT_ID FROM M_CLIENT WHERE PARENT_ID IS NULL  AND TYPE NOT IN ('0','7')";
 			System.out.println("SQL getClient -->" + sql);
 			int i = 1;
 			stat = conn.prepareStatement(sql);

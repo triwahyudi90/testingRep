@@ -44,8 +44,8 @@ public class regCsAct extends org.apache.struts.action.Action{
 			String dt2 = request.getParameter("dt2");
 			String bsn = request.getParameter("bsn");
 			String branch = request.getParameter("branch");
+			int client = Integer.parseInt(request.getParameter("client"));
 				
-//			convert tgl 
 //			SimpleDateFormat format = new SimpleDateFormat("mm/dd/yyyy");
 //			Date date1 = format.parse(dt1);
 //			Date date2 = format.parse(dt2);
@@ -54,7 +54,7 @@ public class regCsAct extends org.apache.struts.action.Action{
 //			String newDate2 = new SimpleDateFormat("dd/mm/yyyy").format(date2);
 			
 			System.out.println("dt1: " + dt1 + "dt2: " + dt2 + "bsn:" + bsn + "branch:" + branch);
-			lph = sql.getClaimDjarumCs(dt1, dt2, bsn, branch);
+			lph = sql.getClaimRegCs(dt1, dt2, bsn, branch, client);
 			
 			if (lph.size() > 0){
 			  request.setAttribute("lph", lph);

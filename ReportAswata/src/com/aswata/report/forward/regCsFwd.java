@@ -32,7 +32,7 @@ public class regCsFwd extends org.apache.struts.action.Action{
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		
+		System.out.println("1");
 		SUCCESS = isValidUser(request);
 		
 		if (!SUCCESS.equals("success")){
@@ -42,17 +42,21 @@ public class regCsFwd extends org.apache.struts.action.Action{
 
 			List listBsn = new ArrayList();
 			List listBranch = new ArrayList();
+			List listClient = new ArrayList();
 			sqlFunction sql = new sqlFunction();
 			listBsn = sql.getBsn();
 			listBranch = sql.getbranch();
+			listClient = sql.getClient();
 			
 			request.setAttribute("bsn", listBsn);
 			request.setAttribute("branch", listBranch);
+			request.setAttribute("client", listClient);
 			request.getSession(true).setAttribute("bsn", listBsn);
 			request.getSession(true).setAttribute("branch", listBranch);
+			request.getSession(true).setAttribute("client", listClient);
 			return mapping.findForward(SUCCESS);
 		} catch (Exception e) {
-			request.setAttribute("errpage", "Error : " + e.getMessage());
+			e.printStackTrace();
 			return mapping.findForward("failed");
 		}
 	}

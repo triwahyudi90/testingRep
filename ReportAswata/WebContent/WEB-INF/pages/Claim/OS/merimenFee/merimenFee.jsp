@@ -11,7 +11,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Data Produksi Bank Mandiri</title>
+  <title>Data Outstanding Merimen Fee</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
@@ -27,7 +27,7 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">  
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Arrays" %>
+<%@ page import="java.util.Arrays" %>	
 <%@ page import="java.util.Iterator" %>
 <%@ page import="com.aswata.report.entity.Role" %>
 <%@ page import="com.aswata.report.entity.RoleMenu" %>
@@ -221,7 +221,7 @@
 						  	  <th>TRANSACTION DATE</th>
 			                  <th>POLICY NUMBER</th>
 			                  <th>LKS HEADER NO</th>
-			                  <th>CLAIM STAT NO</th>
+			                  <th>CLAIM STATEMENT NO</th>
 			                  <th>DOCUMENT NO</th>
 			                  <th>INSURED NAME</th>
 			                  <th>RISK NAME</th>
@@ -229,13 +229,14 @@
 			                  <th>CCY</th>
 			                  <th>CLAIM AMOUNT</th>
 			                  <th>MERIMEN FEE</th>
+			                  <th>DESC ENDORSMENT</th>
 						  </tr>
 					  </thead>
 					  <tbody>
 					  	  <c:set var="inc" value="0" />
 						  <c:forEach var="lph" items="${lph}" >
 						  		<tr>
-						  			<c:set var="inc" value="${inc + 1}" />
+<%-- 						  			<c:set var="inc" value="${inc + 1}" /> --%>
 									<td>${lph.trxDate}</td>
 									<td>${lph.policyNo}</td>
 									<td>${lph.lksHeaderNo}</td>
@@ -247,6 +248,7 @@
 									<td>${lph.ccy}</td>
 									<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${lph.claimAmt}" /></td>
 									<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${lph.merimenFee}" /></td>
+									<td>${lph.descEndorsment}</td>
 						  		</tr>
 						  </c:forEach>
 					  </tbody>
@@ -274,6 +276,12 @@
 <script src="dist/js/demo.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
 
 
 <script>
@@ -283,8 +291,30 @@
         scrollCollapse: true,
 		paging		: true,
 		searching	: true,
-		info	: true
-	});
+		info	: true,
+		dom: 'Bfrtip',
+        buttons: [
+                  {
+                      extend: 'copyHtml5',
+                      exportOptions: {
+                          columns: [ 0, ':visible' ]
+                      }
+                  },
+                  {
+                      extend: 'excelHtml5',
+                      exportOptions: {
+                          columns: ':visible'
+                      }
+                  },
+                  {
+      				extend: 'colvis',
+      				collectionLayout: 'fixed two-column'
+      			  },
+      			  {
+      				extend: 'pdf'
+      			  }
+              ]
+      	});
 	new $.fn.dataTable.FixedColumns( table );
 	});
   

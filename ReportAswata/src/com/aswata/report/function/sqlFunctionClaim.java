@@ -14,8 +14,8 @@ import org.apache.log4j.Logger;
 
 import com.aswata.report.entity.agentRetailClaim;
 import com.aswata.report.entity.agentRetailProd;
-import com.aswata.report.entity.djarumCs;
 import com.aswata.report.entity.merimenFee;
+import com.aswata.report.entity.regCs;
 import com.aswata.report.entity.regLks;
 import com.aswata.singleton.DatasourceEntry;
 
@@ -170,9 +170,9 @@ public class sqlFunctionClaim {
 		} return lbb;
 	}
 	
-	public List getClaimDjarumCs (String dt1, String dt2, String bsn, String branch){
+	public List getClaimRegCs (String dt1, String dt2, String bsn, String branch, int parentId){
 		List lbb = new ArrayList();
-		djarumCs tempDjarum = null;
+		regCs tempRegCs = null;
 		Connection conn = null;
 		PreparedStatement stat = null;
 		ResultSet rs = null;
@@ -180,20 +180,20 @@ public class sqlFunctionClaim {
 		
 		try {
 			conn = DatasourceEntry.getInstance().getPostgreDWHDS().getConnection();
-			sql = "SELECT * FROM DJARUM_CS WHERE ";
+			sql = "SELECT * FROM CLAIM_CS WHERE ";
 			
 			if ((!"".equals(dt1)) && (!"".equals(dt2))){
 				if ("101".equals(branch)){
 					if ("0".equals(bsn)){
-						sql += " CS_DATE >= ? AND CS_DATE <= ? ORDER BY CS_DATE";
+						sql += " CS_DATE >= ? AND CS_DATE <= ? AND PARENT_ID = ? ORDER BY CS_DATE";
 					} else {
-						sql += " CS_DATE >= ? AND CS_DATE <= ? AND BSN_ID = ? ORDER BY CS_DATE";
+						sql += " CS_DATE >= ? AND CS_DATE <= ? AND BSN_ID = ? AND PARENT_ID = ? ORDER BY CS_DATE";
 					}
 				} else {
 					if ("0".equals(bsn)){
-						sql += " CS_DATE >= ? AND CS_DATE <= ? AND BRANCH_ID = ? ORDER BY CS_DATE";
+						sql += " CS_DATE >= ? AND CS_DATE <= ? AND BRANCH_ID = ? AND PARENT_ID = ? ORDER BY CS_DATE";
 					} else {
-						sql += " CS_DATE >= ? AND CS_DATE <= ? AND BSN_ID = ? AND BRANCH_ID = ? ORDER BY CS_DATE";
+						sql += " CS_DATE >= ? AND CS_DATE <= ? AND BSN_ID = ? AND BRANCH_ID = ? AND PARENT_ID = ? ORDER BY CS_DATE";
 					}
 				}
 			} 
@@ -206,21 +206,25 @@ public class sqlFunctionClaim {
 					if ("0".equals(bsn)){
 						stat.setString(i++, dt1.trim());
 						stat.setString(i++, dt2.trim());
+						stat.setInt(i++, parentId);
 					} else {
 						stat.setString(i++, dt1.trim());
 						stat.setString(i++, dt2.trim());
 						stat.setString(i++, bsn.trim());
+						stat.setInt(i++, parentId);
 					}
 				} else {
 					if ("0".equals(bsn)){
 						stat.setString(i++, dt1.trim());
 						stat.setString(i++, dt2.trim());
 						stat.setString(i++, branch.trim());
+						stat.setInt(i++, parentId);
 					} else {
 						stat.setString(i++, dt1.trim());
 						stat.setString(i++, dt2.trim());
 						stat.setString(i++, bsn.trim());
 						stat.setString(i++, branch.trim());
+						stat.setInt(i++, parentId);
 					}
 				}
 			} else {
@@ -229,32 +233,32 @@ public class sqlFunctionClaim {
 			}
 			rs = stat.executeQuery();
 			while (rs.next()) {
-				tempDjarum = new djarumCs();
-				tempDjarum.setPeriod(rs.getString("POLICY_PERIOD"));
-				tempDjarum.setUwYear(rs.getString("UW_YEAR"));
-				tempDjarum.setPolicyNo(rs.getString("POLICY_NUMBER"));
-				tempDjarum.setBsn(rs.getString("BSN_ID"));
-				tempDjarum.setBranch(rs.getString("BRANCH_ID"));
-				tempDjarum.setReqId(rs.getString("REQUESTOR_ID"));
-				tempDjarum.setReqName(rs.getString("REQUESTOR_NAME"));
-				tempDjarum.setCsNo(rs.getString("CS_NUMBER"));
-				tempDjarum.setCsDate(rs.getString("CS_DATE"));
-				tempDjarum.setLksNo(rs.getString("LKS_NUMBER"));
-				tempDjarum.setLksDate(rs.getString("LKS_DATE"));
-				tempDjarum.setLossDate(rs.getString("LOSS_DATE"));
-				tempDjarum.setInsuredName(rs.getString("INSURED_NAME"));
-				tempDjarum.setCcy(rs.getString("SI_CURR"));
-				tempDjarum.setTsi(rs.getString("SUM_INSURED"));
-				tempDjarum.setPaidAmt(rs.getBigDecimal("PAID_AMT"));
-				tempDjarum.setCascoAmt(rs.getBigDecimal("CASCO_AMT"));
-				tempDjarum.setTplAmt(rs.getBigDecimal("TPL_AMT"));
-				tempDjarum.setDeductible(rs.getBigDecimal("DEDUCTIBLE"));
-				tempDjarum.setShareAswataAmt(rs.getBigDecimal("ASWT_SHARE_AMT"));
-				tempDjarum.setShareAswata(rs.getString("ASWT_SHARE_PCT"));
-				tempDjarum.setNoteNo(rs.getString("NOTE_NUMBER"));
-				tempDjarum.setStatus(rs.getString("PAID_STATUS"));
-				tempDjarum.setType(rs.getString("TYPE_OF_LOSS"));
-				lbb.add(tempDjarum);
+				tempRegCs = new regCs();
+				tempRegCs.setPeriod(rs.getString("POLICY_PERIOD"));
+				tempRegCs.setUwYear(rs.getString("UW_YEAR"));
+				tempRegCs.setPolicyNo(rs.getString("POLICY_NUMBER"));
+				tempRegCs.setBsn(rs.getString("BSN_ID"));
+				tempRegCs.setBranch(rs.getString("BRANCH_ID"));
+				tempRegCs.setReqId(rs.getString("REQUESTOR_ID"));
+				tempRegCs.setReqName(rs.getString("REQUESTOR_NAME"));
+				tempRegCs.setCsNo(rs.getString("CS_NUMBER"));
+				tempRegCs.setCsDate(rs.getString("CS_DATE"));
+				tempRegCs.setLksNo(rs.getString("LKS_NUMBER"));
+				tempRegCs.setLksDate(rs.getString("LKS_DATE"));
+				tempRegCs.setLossDate(rs.getString("LOSS_DATE"));
+				tempRegCs.setInsuredName(rs.getString("INSURED_NAME"));
+				tempRegCs.setCcy(rs.getString("SI_CURR"));
+				tempRegCs.setTsi(rs.getString("SUM_INSURED"));
+				tempRegCs.setPaidAmt(rs.getBigDecimal("PAID_AMT"));
+				tempRegCs.setCascoAmt(rs.getBigDecimal("CASCO_AMT"));
+				tempRegCs.setTplAmt(rs.getBigDecimal("TPL_AMT"));
+				tempRegCs.setDeductible(rs.getBigDecimal("DEDUCTIBLE"));
+				tempRegCs.setShareAswataAmt(rs.getBigDecimal("ASWT_SHARE_AMT"));
+				tempRegCs.setShareAswata(rs.getString("ASWT_SHARE_PCT"));
+				tempRegCs.setNoteNo(rs.getString("NOTE_NUMBER"));
+				tempRegCs.setStatus(rs.getString("PAID_STATUS"));
+				tempRegCs.setType(rs.getString("TYPE_OF_LOSS"));
+				lbb.add(tempRegCs);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -398,6 +402,7 @@ public class sqlFunctionClaim {
 				tempMerimen.setPaidTo(rs.getString("PAID_TO"));
 				tempMerimen.setDocumentNo(rs.getString("DOCUMENT_NUMBER"));
 				tempMerimen.setTrxDate(rs.getString("TRANSACTION_DATE"));
+				tempMerimen.setDescEndorsment(rs.getString("DESC_ENDORSMENT"));
 				lbb.add(tempMerimen);
 			}
 		} catch (Exception e) {

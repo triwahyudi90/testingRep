@@ -17,6 +17,20 @@ public class merimenFee {
 	private BigDecimal merimenFee;
 	private String documentNo;
 	private String trxDate;
+	private String descEndorsment;	
+	
+	public BigDecimal getClaimAmt() {
+		return claimAmt;
+	}
+	public void setClaimAmt(BigDecimal claimAmt) {
+		this.claimAmt = claimAmt;
+	}
+	public String getDescEndorsment() {
+		return descEndorsment;
+	}
+	public void setDescEndorsment(String descEndorsment) {
+		this.descEndorsment = descEndorsment;
+	}
 	public String getBranchId() {
 		return branchId;
 	}
