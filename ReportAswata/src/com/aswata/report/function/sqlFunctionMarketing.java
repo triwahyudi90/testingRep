@@ -19,6 +19,7 @@ import com.aswata.report.entity.bankBumn;
 import com.aswata.report.entity.bni;
 import com.aswata.report.entity.bri;
 import com.aswata.report.entity.cimbNiaga;
+import com.aswata.report.entity.laporanBca;
 import com.aswata.report.entity.mandiri;
 import com.aswata.report.entity.maybank;
 import com.aswata.report.entity.maybankCetak;
@@ -565,6 +566,48 @@ public class sqlFunctionMarketing {
 				tmpTender.setPremiNett(rs.getBigDecimal("PREMI_NET"));
 				tmpTender.setPremiGross(rs.getBigDecimal("PREMI_GROSS"));
 				lbb.add(tmpTender);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnDB(conn, stat, rs);
+		} return lbb;
+	}
+	
+	public List getKomisiBca (String dt1, String dt2, String desc, String branch, String busType, String segment){
+		List lbb = new ArrayList();
+		laporanBca tempKomisiBca = null;
+		Connection conn = null;
+		PreparedStatement stat = null;
+		ResultSet rs = null;
+		String sql = "";
+		
+		try {
+			conn = DatasourceEntry.getInstance().getPostgreDWHDS().getConnection();
+			sql = "SELECT * FROM KOMISI_BCA "
+					+ " WHERE TRANSACTION_DATE >= ? AND TRANSACTION_DATE <=? ORDER BY TRANSACTION_DATE, CREATED_DATE_REPORT";
+			System.out.println("SQL getKomisiBca -->" + sql);
+			int i = 1;
+			stat = conn.prepareStatement(sql);
+			stat.setString(i++, dt1.trim());
+			stat.setString(i++, dt2.trim());
+			rs = stat.executeQuery();
+			while (rs.next()) {
+				tempKomisiBca = new laporanBca();
+				tempKomisiBca.setPolicyNo(rs.getString("NO_POLIS"));
+				tempKomisiBca.setSegment(rs.getString("REQUESTOR_TYPE"));
+				tempKomisiBca.setBusType(rs.getString("BUSINESS_TYPE"));
+				tempKomisiBca.setReqName(rs.getString("NAMA_TERTANGGUNG"));
+				tempKomisiBca.setGenerateReportDate(rs.getString("CREATED_DATE_REPORT"));
+				tempKomisiBca.setTransactionDate(rs.getString("TRANSACTION_DATE"));
+				tempKomisiBca.setCreatedDatePolis(rs.getString("TGL_TERBIT_POLIS"));
+				tempKomisiBca.setBranchBca(rs.getString("CABANG_BCA"));
+				tempKomisiBca.setPremiBruto(rs.getBigDecimal("PREMI_BRUTO"));
+				tempKomisiBca.setKomisi(rs.getBigDecimal("KOMISI"));
+				tempKomisiBca.setPpn(rs.getBigDecimal("PPN_ATAS_KOMISI"));
+				tempKomisiBca.setTotal(rs.getBigDecimal("TOTAL_PENDEBETAN_BCA"));
+				tempKomisiBca.setPremiNet(rs.getBigDecimal("PREMI_NET_NOTA"));
+				lbb.add(tempKomisiBca);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

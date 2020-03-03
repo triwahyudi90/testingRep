@@ -99,10 +99,15 @@ public class sqlFunction {
 	public loginReport2 getLogin2 (String user){
 		System.out.println("sql user:" + user);
 		loginReport2 login = null;
+		System.out.println("1");
 		Connection conn = null;
+		System.out.println("2");
 		PreparedStatement stat = null;
+		System.out.println("3");
 		ResultSet rs = null;
+		System.out.println("4");
 		String sql = "";
+		System.out.println("5");
 		try {
 			conn = DatasourceEntry.getInstance().getPostgreDS().getConnection();
 			sql = "SELECT USER_ID, GROUP_ID FROM M_USERS WHERE USER_ID = ?";
@@ -117,7 +122,7 @@ public class sqlFunction {
 				login.setRole(rs.getString("GROUP_ID"));
 			}
 		} catch (Exception e) {
-			log.error("getLogin2 :" + e.getMessage());
+			e.printStackTrace();
 		} finally {
 			closeConnDB(conn, stat, rs);
 		}

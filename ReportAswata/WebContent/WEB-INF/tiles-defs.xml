@@ -81,7 +81,10 @@
 				<definition name=".merimenFee" path="/WEB-INF/pages/Claim/OS/merimenFee/merimenFee.jsp"></definition>
 					
     <!-- MARKETING -->
-		<!-- BANK -->
+    	<!-- BANK -->
+			<!-- BCA -->
+				<definition name=".laporanBca" path="/WEB-INF/pages/Marketing/Bank/Bca/laporanBCA.jsp"></definition>
+		<!-- PRODUKSI -->
 			<!-- ALL -->
 				<definition name=".allbankCutOff" path="/WEB-INF/pages/Marketing/Bank/Allbank/CutOff.jsp"></definition>
 				<definition name=".allbankRewards" path="/WEB-INF/pages/Marketing/Bank/Allbank/Rewards.jsp"></definition>
@@ -89,16 +92,11 @@
 				<definition name=".bankBumn" path="/WEB-INF/pages/Marketing/Bank/Bumn/bankBumn.jsp"></definition>
 			<!-- BCA -->
 				<definition name=".bca" path="/WEB-INF/pages/Marketing/Bank/Bca/bca.jsp"></definition>
-			<!-- BRI -->
-				<definition name=".bri" path="/WEB-INF/pages/Marketing/Bank/Bri/bri.jsp"></definition>
-			<!-- BNI -->
-				<definition name=".bni" path="/WEB-INF/pages/Marketing/Bank/Bni/bni.jsp"></definition>
+			<!-- BNI VA -->
 				<definition name=".bniVa" path="/WEB-INF/pages/Marketing/Bank/Bni/bniVa.jsp"></definition>
 			<!-- CIMB -->
 				<definition name=".cimb" path="/WEB-INF/pages/Marketing/Bank/Cimb/cimb.jsp"></definition>
 				<definition name=".EomCimb" path="/WEB-INF/pages/Marketing/Bank/Cimb/EomCimb.jsp"></definition>
-			<!-- MANDIRI -->
-				<definition name=".mandiri" path="/WEB-INF/pages/Marketing/Bank/Mandiri/mandiri.jsp"></definition>
 			<!-- MAYBANK -->	
 				<definition name=".maybank" path="/WEB-INF/pages/Marketing/Bank/Maybank/maybank.jsp"></definition>
 			<!-- PERMATA -->	

@@ -117,6 +117,16 @@
 			
 	<!-- marketing -->
 		<!-- BANK -->
+			<!-- LAPORAN BCA -->
+				<action path="/bcaMonthly" parameter="usr" scope="request" type="com.aswata.report.forward.laporanBCAfwd">
+					<forward name="success" path=".laporanBca" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+				<action path="/bcaMonthlyAct" parameter="usr" scope="request" type="com.aswata.report.action.bcaMonthlyAct">
+					<forward name="success" path=".laporanBca" />
+					<forward name="failed" path=".errPage"></forward>
+				</action>
+		<!-- PRODUKSI -->
 			<!-- ALL CUT OFF-->
 				<action path="/allbankCutOff" parameter="usr" scope="request" type="com.aswata.report.forward.allbankCutOffFwd">
 					<forward name="success" path=".allbankCutOff" />
@@ -154,23 +164,23 @@
 					<forward name="failed" path=".errPage"></forward>
 				</action>	
 			<!-- BRI -->
-				<action path="/bri" parameter="usr" scope="request" type="com.aswata.report.forward.briFwd">
-					<forward name="success" path=".bri" />
-					<forward name="failed" path=".errPage"></forward>
-				</action>
-				<action path="/briAct" parameter="usr" scope="request" type="com.aswata.report.action.briAct">
-					<forward name="success" path=".bri" />
-					<forward name="failed" path=".errPage"></forward>
-				</action>	
+<!-- 				<action path="/bri" parameter="usr" scope="request" type="com.aswata.report.forward.briFwd"> -->
+<!-- 					<forward name="success" path=".bri" /> -->
+<!-- 					<forward name="failed" path=".errPage"></forward> -->
+<!-- 				</action> -->
+<!-- 				<action path="/briAct" parameter="usr" scope="request" type="com.aswata.report.action.briAct"> -->
+<!-- 					<forward name="success" path=".bri" /> -->
+<!-- 					<forward name="failed" path=".errPage"></forward> -->
+<!-- 				</action>	 -->
 			<!-- BNI -->
-				<action path="/bni" parameter="usr" scope="request" type="com.aswata.report.forward.bniFwd">
-					<forward name="success" path=".bni" />
-					<forward name="failed" path=".errPage"></forward>
-				</action>
-				<action path="/bniAct" parameter="usr" scope="request" type="com.aswata.report.action.bniAct">
-					<forward name="success" path=".bni" />
-					<forward name="failed" path=".errPage"></forward>
-				</action>	
+<!-- 				<action path="/bni" parameter="usr" scope="request" type="com.aswata.report.forward.bniFwd"> -->
+<!-- 					<forward name="success" path=".bni" /> -->
+<!-- 					<forward name="failed" path=".errPage"></forward> -->
+<!-- 				</action> -->
+<!-- 				<action path="/bniAct" parameter="usr" scope="request" type="com.aswata.report.action.bniAct"> -->
+<!-- 					<forward name="success" path=".bni" /> -->
+<!-- 					<forward name="failed" path=".errPage"></forward> -->
+<!-- 				</action>	 -->
 			<!-- BNI VA-->
 				<action path="/bniVa" parameter="usr" scope="request" type="com.aswata.report.forward.bniVaFwd">
 					<forward name="success" path=".bniVa" />
@@ -181,14 +191,14 @@
 					<forward name="failed" path=".errPage"></forward>
 				</action>	
 			<!-- MANDIRI -->
-				<action path="/mandiri" parameter="usr" scope="request" type="com.aswata.report.forward.mandiriFwd">
-					<forward name="success" path=".mandiri" />
-					<forward name="failed" path=".errPage"></forward>
-				</action>
-				<action path="/mandiriAct" parameter="usr" scope="request" type="com.aswata.report.action.mandiriAct">
-					<forward name="success" path=".mandiri" />
-					<forward name="failed" path=".errPage"></forward>
-				</action>	
+<!-- 				<action path="/mandiri" parameter="usr" scope="request" type="com.aswata.report.forward.mandiriFwd"> -->
+<!-- 					<forward name="success" path=".mandiri" /> -->
+<!-- 					<forward name="failed" path=".errPage"></forward> -->
+<!-- 				</action> -->
+<!-- 				<action path="/mandiriAct" parameter="usr" scope="request" type="com.aswata.report.action.mandiriAct"> -->
+<!-- 					<forward name="success" path=".mandiri" /> -->
+<!-- 					<forward name="failed" path=".errPage"></forward> -->
+<!-- 				</action>	 -->
 			<!-- CIMB -->
 				<action path="/cimbNiaga" parameter="usr" scope="request" type="com.aswata.report.forward.cimbFwd">
 					<forward name="success" path=".cimb" />
